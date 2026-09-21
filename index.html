@@ -932,9 +932,10 @@
 <p>若商品文字僅局部包含某個品牌名稱，但兩者品類完全不符，系統判定為不相符。例如書籍類漫畫《KING GOLF》內含單字 <code>GOLF</code>，而品牌庫中的 <code>GOLF</code> 登記為汽車配件，系統直接否決，防止跨領域誤對應。</p>
 </li>
 <li>
-<p><strong>相容周邊與副廠收斂為無品牌</strong></p>
+<p><strong>相容周邊與副廠之製造商精準識別</strong></p>
 </li>
-<li>手機保護貼、副廠手把配件、轉接線等商品，其本體並非原廠品牌。系統一律將相容描述（如「適用 iPhone」、「Switch 副廠」）辨識為周邊配件，<strong>收斂為無品牌（No brand）</strong>，避免污染原廠品牌庫銷售統計。</li>
+<li><strong>無獨立品牌之純相容配件</strong>：手機保護貼、通用轉接線、白牌副廠支架等，本體並非原廠所製。系統一律將純相容描述（如「適用 iPhone」、「Switch 副廠」）收斂為<strong>無品牌（No brand）</strong>，避免污染原廠品牌庫銷售統計。</li>
+<li><strong>具獨立第三方製造商品牌之周邊</strong>：例如 <code>【ipega】副廠 Switch 運動指套</code>、<code>【犀牛盾】iPhone 15 防摔保護殼</code>、<code>【良值】Switch 副廠手把專用腕帶</code>。系統精準識別其第三方製造商身份，<strong>正確歸入該品牌庫（Ipega、犀牛盾）或建議新增（良值）</strong>，絕不因內文包含「副廠」或相容主機名稱而誤判為無品牌。</li>
 </ol>
 <hr />
 <h2 id="2">2. 總體決策體系與判定流程</h2>
@@ -1246,6 +1247,17 @@
 <td style="text-align: center;"><span class="badge badge-score">86</span></td>
 </tr>
 <tr>
+<td style="text-align: center;"><code>10225061</code></td>
+<td style="text-align: left;">Game Kingdom</td>
+<td style="text-align: left;"><em>(空白)</em></td>
+<td style="text-align: left;">【ipega】副廠 Switch 運動指套健身配件</td>
+<td style="text-align: center;"><strong>Ipega</strong></td>
+<td style="text-align: center;"><code>1146606</code></td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: left;">2.2 標題【】提取</td>
+<td style="text-align: center;"><span class="badge badge-score">86</span></td>
+</tr>
+<tr>
 <td style="text-align: center;"><code>10233164</code></td>
 <td style="text-align: left;">Game Kingdom</td>
 <td style="text-align: left;">良值</td>
@@ -1278,25 +1290,16 @@
 <td style="text-align: left;">2.1 配件/相容品排除</td>
 <td style="text-align: center;"><span class="badge badge-score">88</span></td>
 </tr>
-<tr>
-<td style="text-align: center;"><code>10225061</code></td>
-<td style="text-align: left;">Game Kingdom</td>
-<td style="text-align: left;"><em>(空白)</em></td>
-<td style="text-align: left;">【ipega】副廠 Switch 運動指套健身配件</td>
-<td style="text-align: center;"><strong>No brand</strong></td>
-<td style="text-align: center;"><code>-</code></td>
-<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
-<td style="text-align: left;">2.1 配件/相容品排除</td>
-<td style="text-align: center;"><span class="badge badge-score">88</span></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>抽樣解讀</strong>：
-- 範例 1、2 呈現品牌欄有值時，標準品牌之直接命中與重複品牌自動取大機制。
-- 範例 3 呈現品牌欄空白時，系統自動從標題括號提取品牌並正確關聯之能力。
-- 範例 4、5 呈現具備商業品牌特徵（良值、RedMoon）但品牌庫暫無之項目，自動歸入建議新增名單，不造成髒資料。
-- 範例 6、7 呈現非原廠之周邊相容品（MacBook 防窺片、Switch 副廠指套），精準識別為周邊配件並收斂為無品牌，確保原廠品牌數據純淨。</p>
+- 範例 1、2 呈現品牌欄有填時，標準品牌之直接命中與重複品牌自動取大機制。
+- 範例 3、4 呈現品牌欄空白時，系統自動從標題括號提取品牌：
+  - 範例 3 提取並命中庫內品牌 <code>AMANO</code>。
+  - <strong>範例 4（關鍵機制）</strong>：商品雖標示「副廠 Switch 配件」，但標題開頭有明確獨立配件品牌 <code>【ipega】</code>。系統精準識別出 <code>Ipega</code> 為配件製造商，正確歸入 <code>Ipega</code>（1146606），<strong>絕不因包含「副廠」而誤殺品牌</strong>！
+- 範例 5、6 呈現具備商業品牌特徵（良值、RedMoon）但品牌庫暫無之項目，自動歸入建議新增名單（TYPE_NEW）。
+- 範例 7 呈現無獨立品牌之純相容配件（MacBook 磁吸防窺片），精準識別相容關鍵字並收斂為無品牌（No brand），避免污染原廠 Apple 品牌數據。</p>
 </blockquote>
 <hr />
 <h2 id="4">4. 全站成效總覽與品質分級管理</h2>
@@ -1711,9 +1714,11 @@
 </ul>
 <hr />
 <h2 id="7">7. 常見問答</h2>
-<p><strong>Q1：副廠配件或相容周邊（如 iPhone 保護貼、Switch 副廠手把），會不會被系統誤判為原廠品牌？</strong></p>
+<p><strong>Q1：副廠配件或相容周邊（如 iPhone 保護貼、Switch 副廠手把），會不會被誤判為原廠品牌？若配件本身有獨立品牌（如 ipega、犀牛盾）又該如何處理？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：不會。系統在軌道 A（1.2）與軌道 B（2.1）均設置高優先級之周邊配件與相容詞檢驗機制。凡標題或品牌欄包含「保護貼」、「適用」、「副廠」、「替換頭」、「支架」等配件特徵詞者，系統皆判定為相容周邊，<strong>一律歸入無品牌（No brand）</strong>，絕不污染原廠 Apple 或 Nintendo 品牌數據。</p>
+<p><strong>說明</strong>：
+1. <strong>純相容或白牌配件（收斂為 No brand）</strong>：凡商品無獨立第三方品牌，且標題僅提及相容主機與配件詞（如「iPhone 15 鋼化膜」、「適用 Switch 散熱支架」），或標題假借原廠名義但宣告副廠（如「【Apple】副廠充電線」），系統一律判定為相容周邊，<strong>歸入無品牌（No brand，路徑 2.1）</strong>，絕不誤算入原廠 Apple 或 Nintendo 銷售數據。
+2. <strong>具獨立製造商品牌之配件（正確歸入第三方品牌）</strong>：若周邊配件本身具備合法獨立品牌（如「【ipega】副廠 Switch 手把運動指套」、「【犀牛盾】iPhone 15 防摔殼」、「【良值】Switch 配件」），系統會精準識別其獨立品牌身份，<strong>正確歸入該品牌庫（Ipega、犀牛盾）或建議新增（良值）</strong>，絕不因出現「副廠/Switch/iPhone」字眼而誤殺品牌！</p>
 </blockquote>
 <p><strong>Q2：如果同一個品牌名稱出現在不同品類（如運動用品 vs 3C 電腦周邊），系統會不會誤配？</strong></p>
 <blockquote>
