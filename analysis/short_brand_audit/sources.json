@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "scope",
+      "title": "短英數配對風險有多少",
+      "queries": [
+        {
+          "id": "local-audit",
+          "source": {
+            "label": "momo品牌配對存檔與品牌庫",
+            "files": [
+              {
+                "label": "brand_rules.db"
+              },
+              {
+                "label": "brand_pool.csv"
+              },
+              {
+                "label": "short_brand_audit.py"
+              }
+            ],
+            "sql": "SELECT site, level1, item_id, raw_brand, title,\n        \"suggest brand name\" AS matched_name, \"suggest brand id\" AS matched_id,\n        \"信心指數\" AS confidence, 判斷路徑 AS path, tagged_at\n        FROM item_results WHERE site = ?",
+            "filters": [
+              "站點：momo",
+              "來源含中文且英數長度1–3",
+              "現有品牌英數相同、中文不同，且無human/curated別名支持"
+            ],
+            "metricDefinitions": [
+              {
+                "label": "風險品號",
+                "definition": "依商品品號計數，來源為品牌欄或空白時的標題第一個【】；品牌字串正規化後去重。"
+              }
+            ],
+            "caveats": [
+              "89組2,987件是證據不足篩查，不是已證實錯誤；包含可能正確的MSI、WD、LG等品牌。",
+              "本次不含纯英文短名及四字元以上英文的全面篩查。"
+            ],
+            "evidenceFlow": [
+              {
+                "kind": "validation",
+                "title": "粒度核對",
+                "detail": "共545,572列，545,572個不同品號，涵蓋22類別；品牌庫76,675個ID。"
+              }
+            ]
+          },
+          "reportingPeriod": "存檔輸出時間：2026-09-21 14:56:34–15:02:33；不是商品採集時間",
+          "columns": [
+            "英數長度",
+            "風險字串",
+            "風險品號"
+          ],
+          "rows": [
+            {
+              "英數長度": "2",
+              "風險字串": 28,
+              "風險品號": 899
+            },
+            {
+              "英數長度": "3",
+              "風險字串": 61,
+              "風險品號": 2088
+            }
+          ],
+          "preview": {
+            "kind": "aggregate",
+            "note": "全站風險篩查依英數長度彙總",
+            "totalRows": 2987
+          }
+        }
+      ]
+    },
+    {
+      "id": "priority",
+      "title": "6組优先處理提案，涉及526件",
+      "queries": [
+        {
+          "id": "proposals",
+          "source": {
+            "label": "內部品牌庫及官方品牌證據",
+            "files": [
+              {
+                "label": "proposed_mappings.csv"
+              },
+              {
+                "label": "brand_pool.csv"
+              }
+            ],
+            "links": [
+              {
+                "label": "GB 綠鐘",
+                "url": "https://greenbell.ne.jp/chntd/product-list/kitchen/"
+              },
+              {
+                "label": "HH 草本新淨界",
+                "url": "https://page.line.me/mbx3422u/signboard/554079114850404"
+              },
+              {
+                "label": "JS 婕洛妮絲",
+                "url": "https://page.line.me/hzz8479e"
+              },
+              {
+                "label": "GP 超霸",
+                "url": "https://tw.gpbatteries.com/pages/corporate-information"
+              },
+              {
+                "label": "KUM 熊野",
+                "url": "https://www.kumanoyushi.co.jp/company/"
+              },
+              {
+                "label": "H&R 安室家",
+                "url": "https://www.h-r.com/en/company/"
+              }
+            ],
+            "caveats": [
+              "外部來源可確認品牌名稱與產品；內部ID的歸屬仍需依品牌庫資料判讀。HH官方也用H&H，不能只憑字面斷言原ID一定是另一品牌。"
+            ]
+          },
+          "columns": [
+            "來源品牌",
+            "目前品牌",
+            "建議品牌",
+            "建議ID",
+            "品號數"
+          ],
+          "rows": [
+            {
+              "來源品牌": "GB 綠鐘",
+              "目前品牌": "gb",
+              "建議品牌": "GREEN BELL",
+              "建議ID": 1124530,
+              "品號數": 222
+            },
+            {
+              "來源品牌": "HH 草本新淨界",
+              "目前品牌": "H&H",
+              "建議品牌": "Herb & Health",
+              "建議ID": 1111148,
+              "品號數": 69
+            },
+            {
+              "來源品牌": "JS 婕洛妮絲",
+              "目前品牌": "JS",
+              "建議品牌": "jealousness",
+              "建議ID": 3472328,
+              "品號數": 90
+            },
+            {
+              "來源品牌": "GP 超霸",
+              "目前品牌": "G.P",
+              "建議品牌": "GP Batteries",
+              "建議ID": 1146524,
+              "品號數": 65
+            },
+            {
+              "來源品牌": "KUM 熊野",
+              "目前品牌": "KUM",
+              "建議品牌": "Kumano 熊野油脂",
+              "建議ID": 1136616,
+              "品號數": 77
+            },
+            {
+              "來源品牌": "H&R 安室家",
+              "目前品牌": "H&R",
+              "建議品牌": "H&R 安室家",
+              "建議ID": 1111072,
+              "品號數": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repair",
+      "title": "新增對照仍需處理衝突auto與重複ID選擇",
+      "queries": [
+        {
+          "id": "simulation",
+          "source": {
+            "label": "現有引擎記憶體實驗",
+            "files": [
+              {
+                "label": "short_brand_proposal.py"
+              },
+              {
+                "label": "scenario_comparison.csv"
+              }
+            ],
+            "caveats": [
+              "正式程式、別名與結果未修改。實驗標題空白、類目檢查關閉，信心分數不等於正式品號分數或實測準確率。",
+              "廣泛完整名稱優先的原型另外改變7組54件候選，尚未核實，維持待審；9個對照ID不變不代表全站沒有誤傷。"
+            ]
+          },
+          "columns": [
+            "來源品牌",
+            "實驗",
+            "輸出品牌",
+            "信心"
+          ],
+          "rows": [
+            {
+              "來源品牌": "GB 綠鐘",
+              "實驗": "現有",
+              "輸出品牌": "gb",
+              "信心": 93
+            },
+            {
+              "來源品牌": "GB 綠鐘",
+              "實驗": "只加對照",
+              "輸出品牌": "gb",
+              "信心": 45
+            },
+            {
+              "來源品牌": "GB 綠鐘",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "GREEN BELL",
+              "信心": 98
+            },
+            {
+              "來源品牌": "HH 草本新淨界",
+              "實驗": "現有",
+              "輸出品牌": "H&H",
+              "信心": 93
+            },
+            {
+              "來源品牌": "HH 草本新淨界",
+              "實驗": "只加對照",
+              "輸出品牌": "H&H",
+              "信心": 45
+            },
+            {
+              "來源品牌": "HH 草本新淨界",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "Herb & Health",
+              "信心": 98
+            },
+            {
+              "來源品牌": "JS 婕洛妮絲",
+              "實驗": "現有",
+              "輸出品牌": "JS",
+              "信心": 87
+            },
+            {
+              "來源品牌": "JS 婕洛妮絲",
+              "實驗": "只加對照",
+              "輸出品牌": "jealousness",
+              "信心": 98
+            },
+            {
+              "來源品牌": "JS 婕洛妮絲",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "jealousness",
+              "信心": 98
+            },
+            {
+              "來源品牌": "GP 超霸",
+              "實驗": "現有",
+              "輸出品牌": "G.P",
+              "信心": 87
+            },
+            {
+              "來源品牌": "GP 超霸",
+              "實驗": "只加對照",
+              "輸出品牌": "GP Batteries",
+              "信心": 98
+            },
+            {
+              "來源品牌": "GP 超霸",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "GP Batteries",
+              "信心": 98
+            },
+            {
+              "來源品牌": "KUM 熊野",
+              "實驗": "現有",
+              "輸出品牌": "KUM",
+              "信心": 98
+            },
+            {
+              "來源品牌": "KUM 熊野",
+              "實驗": "只加對照",
+              "輸出品牌": "KUM",
+              "信心": 45
+            },
+            {
+              "來源品牌": "KUM 熊野",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "Kumano 熊野油脂",
+              "信心": 45
+            },
+            {
+              "來源品牌": "H&R 安室家",
+              "實驗": "現有",
+              "輸出品牌": "H&R",
+              "信心": 87
+            },
+            {
+              "來源品牌": "H&R 安室家",
+              "實驗": "只加對照",
+              "輸出品牌": "H&R",
+              "信心": 87
+            },
+            {
+              "來源品牌": "H&R 安室家",
+              "實驗": "隔離衝突auto再加對照",
+              "輸出品牌": "H&R",
+              "信心": 87
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

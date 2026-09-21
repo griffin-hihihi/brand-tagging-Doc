@@ -1,0 +1,271 @@
+{
+  "site": "momo",
+  "total_goods": 545572,
+  "unique_items": 545572,
+  "categories": 22,
+  "pool_ids": 76675,
+  "result_min": "2026-09-21 14:56:34",
+  "result_max": "2026-09-21 15:02:33",
+  "risk_definition": "有中文及1-3字元英數、現有結果配到英數相同但中文不相同的品牌，且無human/curated別名支持；是待核風險，不是已證實錯配。",
+  "bilingual_short_goods": 9148,
+  "risk_goods": 2987,
+  "risk_source_names": 89,
+  "risk_categories": 20,
+  "by_length": {
+    "2": {
+      "source_names": 28,
+      "goods": 899,
+      "auto_alias_goods": 646
+    },
+    "3": {
+      "source_names": 61,
+      "goods": 2088,
+      "auto_alias_goods": 1876
+    }
+  },
+  "by_category": {
+    "Beauty": 603,
+    "Everything Else": 1,
+    "Food & Beverages": 37,
+    "Game Kingdom": 6,
+    "Hardware & 3C": 715,
+    "Health": 317,
+    "Home & Living": 459,
+    "Home Electronic": 69,
+    "Life & Entertainment": 19,
+    "Men's Apparel": 34,
+    "Men's Bags& Accessories": 45,
+    "Mobile & Gadgets": 353,
+    "Mother & Baby": 110,
+    "Motors": 47,
+    "Pets": 62,
+    "Shoes": 1,
+    "Sports & Outdoors": 58,
+    "Women Accessories": 3,
+    "Women Bags": 42,
+    "Women's Apparel": 6
+  },
+  "latest_runs": [
+    {
+      "level1": "Books",
+      "ran_at": "2026-09-21 14:56:37"
+    },
+    {
+      "level1": "Home & Living",
+      "ran_at": "2026-09-21 14:57:21"
+    },
+    {
+      "level1": "Mother & Baby",
+      "ran_at": "2026-09-21 14:57:52"
+    },
+    {
+      "level1": "Mobile & Gadgets",
+      "ran_at": "2026-09-21 14:58:18"
+    },
+    {
+      "level1": "Beauty",
+      "ran_at": "2026-09-21 14:58:29"
+    },
+    {
+      "level1": "Hardware & 3C",
+      "ran_at": "2026-09-21 14:58:54"
+    },
+    {
+      "level1": "Food & Beverages",
+      "ran_at": "2026-09-21 14:59:19"
+    },
+    {
+      "level1": "Health",
+      "ran_at": "2026-09-21 14:59:39"
+    },
+    {
+      "level1": "Sports & Outdoors",
+      "ran_at": "2026-09-21 14:59:59"
+    },
+    {
+      "level1": "Home Electronic",
+      "ran_at": "2026-09-21 15:00:20"
+    },
+    {
+      "level1": "Pets",
+      "ran_at": "2026-09-21 15:00:38"
+    },
+    {
+      "level1": "Women's Apparel",
+      "ran_at": "2026-09-21 15:00:54"
+    },
+    {
+      "level1": "Women Accessories",
+      "ran_at": "2026-09-21 15:01:13"
+    },
+    {
+      "level1": "Life & Entertainment",
+      "ran_at": "2026-09-21 15:01:25"
+    },
+    {
+      "level1": "Motors",
+      "ran_at": "2026-09-21 15:01:38"
+    },
+    {
+      "level1": "Women Bags",
+      "ran_at": "2026-09-21 15:01:47"
+    },
+    {
+      "level1": "Men's Bags& Accessories",
+      "ran_at": "2026-09-21 15:01:54"
+    },
+    {
+      "level1": "Everything Else",
+      "ran_at": "2026-09-21 15:02:03"
+    },
+    {
+      "level1": "Game Kingdom",
+      "ran_at": "2026-09-21 15:02:11"
+    },
+    {
+      "level1": "Men's Apparel",
+      "ran_at": "2026-09-21 15:02:20"
+    },
+    {
+      "level1": "Shoes",
+      "ran_at": "2026-09-21 15:02:26"
+    },
+    {
+      "level1": "Tickets & Services",
+      "ran_at": "2026-09-21 15:02:33"
+    }
+  ],
+  "priority_proposals": {
+    "source_names": 6,
+    "goods": 526,
+    "remaining_unverified_source_names": 83,
+    "remaining_unverified_goods": 2461,
+    "quarantined_aliases_in_memory_only": [
+      [
+        "綠鐘",
+        4405709,
+        "auto"
+      ],
+      [
+        "草本新淨界",
+        1120001,
+        "auto"
+      ],
+      [
+        "熊野",
+        1094859,
+        "auto"
+      ]
+    ],
+    "note": "6組為有依據的優先修正提案，不等於已證實6個原ID均屬不同品牌；HH原ID可能也是同品牌重複登錄。"
+  },
+  "prototype_checks": {
+    "proposed_ids_passed": 6,
+    "control_ids_unchanged": 9,
+    "additional_unverified_selection_changes": [
+      {
+        "來源品牌": "AOK 飛速",
+        "類別": "Home & Living",
+        "品號數": 2,
+        "現有品牌": "AOK",
+        "提案品牌": "AOK 飛速",
+        "提案ID": "1087936",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "AOK 飛速",
+        "類別": "Men's Apparel",
+        "品號數": 2,
+        "現有品牌": "AOK",
+        "提案品牌": "AOK 飛速",
+        "提案ID": "1087936",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "AOK 飛速",
+        "類別": "Women's Apparel",
+        "品號數": 2,
+        "現有品牌": "AOK",
+        "提案品牌": "AOK 飛速",
+        "提案ID": "1087936",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "AP 磁王",
+        "類別": "Health",
+        "品號數": 2,
+        "現有品牌": "AP",
+        "提案品牌": "AP磁王",
+        "提案ID": "5004508",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "BAC 倍爾康",
+        "類別": "Health",
+        "品號數": 9,
+        "現有品牌": "bac",
+        "提案品牌": "BAC 倍爾康",
+        "提案ID": "1214667",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "DRX 達特世",
+        "類別": "Health",
+        "品號數": 22,
+        "現有品牌": "DRX",
+        "提案品牌": "DRX 達特世",
+        "提案ID": "1272795",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "DRX 達特世",
+        "類別": "Home & Living",
+        "品號數": 8,
+        "現有品牌": "DRX",
+        "提案品牌": "DRX 達特世",
+        "提案ID": "1272795",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "JS 嚴選",
+        "類別": "Women's Apparel",
+        "品號數": 1,
+        "現有品牌": "JS",
+        "提案品牌": "JS嚴選",
+        "提案ID": "1085785",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "K’s 凱恩絲",
+        "類別": "Women's Apparel",
+        "品號數": 1,
+        "現有品牌": "K&S",
+        "提案品牌": "k's 凱恩絲",
+        "提案ID": "1112574",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      },
+      {
+        "來源品牌": "ONE 生活",
+        "類別": "Home & Living",
+        "品號數": 5,
+        "現有品牌": "ONE",
+        "提案品牌": "ONE 生活",
+        "提案ID": "1131589",
+        "提案信心": 74,
+        "狀態": "候選保留待確認"
+      }
+    ],
+    "scope": "針對已篩出的風險字串與9個對照字串，在記憶體做定向修正及待審門檻實驗；不是全站新引擎回歸測試。"
+  },
+  "risk_high_confidence_goods": 1954,
+  "risk_currently_pending_goods": 10
+}

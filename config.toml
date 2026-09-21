@@ -1,0 +1,84 @@
+# ══════════════════════════════════════════════════════════════════════
+#  品牌 Tagging 設定檔
+#  改這個檔就好，不用動程式。改完存檔直接跑 py run.py tag
+# ══════════════════════════════════════════════════════════════════════
+
+[site]
+name = "momo"                       # 站點名稱，會用在資料夾與資料庫紀錄
+
+[source]
+# 競網 raw 資料（SQLite，每列一包 JSON payload）
+path  = "raw-51b202999c75768e98d52b13.sqlite"
+table = "output"
+# 抽取後的品號層快取。raw 換檔會自動重建，不用手動刪
+cache = "cache/momo_goods.db"
+
+[pool]
+path    = "brand_pool.csv"          # shp 品牌庫
+col_cat = "level1_category"         # 品牌庫的類目欄位（用來做類目一致性檢查）
+# table = "brands"                  # pool 若是 SQLite 才需要指定
+
+[store]
+db = "brand_rules.db"               # 規則庫：decision_log / brand_rules / 別名 / 歷程
+
+[paths]
+review = "review"                   # 你要編輯的審核檔放這（每個 L1 一個固定檔名）
+output = "output"                   # 產出的結果檔放這（每次重新產生，不要編輯）
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  ★ 要跑哪些 L1 ★
+#    py run.py tag              → 跑下面 active 列的
+#    py run.py tag --l1 Beauty  → 臨時只跑一個，不用改這個檔
+#    py run.py tag --all        → 22 個全跑
+#    py run.py status           → 看每個 L1 進度、還剩多少要審
+#
+#  ── 建議的審核順序（依 2026-09-20 首跑的實際待審數字排出）─────────────
+#  「槓桿」= 每審 1 個品牌字串平均解決幾個品號。先做槓桿高的最划算。
+#
+#    L1                        待審字串   待審品號   槓桿   自動完成率
+#    Books                       1,440    63,934   44.4      62%   ★最高槓桿
+#    Women's Apparel               193     2,578   13.4      72%   ★小而甜
+#    Mother & Baby               1,222    16,306   13.3      66%
+#    Life & Entertainment          301     3,790   12.6      43%
+#    Men's Apparel                  68       521    7.7      76%   ★暖身用
+#    Hardware & 3C                 958     5,651    5.9      82%
+#    Women Accessories             670     3,819    5.7      53%
+#    Home & Living               5,081    26,615    5.2      69%   ←最硬，放最後
+#    Food & Beverages            1,409     6,876    4.9      72%
+#    Beauty                      1,439     7,040    4.9      82%
+#    Health                        896     4,258    4.8      76%
+#    Men's Bags& Accessories       196       828    4.2      75%
+#    Pets                          654     2,701    4.1      73%
+#    Sports & Outdoors           1,362     5,490    4.0      65%
+#    Everything Else               174       665    3.8      80%
+#    Mobile & Gadgets            3,060    11,016    3.6      75%
+#    Home Electronic               862     3,003    3.5      78%
+#    Motors                        484     1,702    3.5      74%
+#    Women Bags                    439     1,512    3.4      63%
+#    Shoes                         216       598    2.8      50%
+#    Tickets & Services              4        11    2.8      72%
+#    Game Kingdom                   68       111    1.6      96%   ←幾乎不用審
+#
+#  這些數字會隨著規則庫累積而下降，隨時用 py run.py status 看最新的。
+# ══════════════════════════════════════════════════════════════════════
+[run]
+# 暖身三個：量小、跨 L1 共用率高（87% / 71% / 76%），審完直接嘉惠其他 L1
+active = ["Men's Apparel", "Game Kingdom", "Women's Apparel"]
+
+
+[review]
+sample_n = 30                       # 高/中信心各抽查幾個品牌字串（量準確率用）
+
+[report]
+breakdown = ["l2", "l3"]            # 統計頁的類目拆解欄位
+write_sku_sheet = false             # 之後要 SKU 層輸出時再開
+
+# ── 比對閾值。除非很清楚在做什麼，否則不要改 ──────────────────────────
+[thresholds]
+auto         = 95                   # 分數 ≥ 這個才算「相符」
+suggest      = 75                   # 低於這個的候選只列出、不建議（最小顆粒度原則）
+tier_gap     = 5                    # 決策樹①：與最高分差距在此之內算「同樣相關」
+near_ratio   = 85                   # 兩個候選名稱相似度 ≥ 此值算「名稱相近」
+title_factor = 0.95                 # 靠【】判斷時的分數折扣
+fuzzy_cutoff = 88                   # 拼字相似度門檻
