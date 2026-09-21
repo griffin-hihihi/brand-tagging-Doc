@@ -1,6 +1,7 @@
 """單一大審核表（打包 22 個品類給 Temp 審核，審完直接回灌）。"""
 from __future__ import annotations
 
+import sqlite3
 from pathlib import Path
 import pandas as pd
 
@@ -9,14 +10,15 @@ from .const import (CONF_COL, H_NOTE, H_PICK, H_REASON, HUMAN_COLS, NB_ID,
                     TYPE_NB, TYPE_NEW, TYPE_POOL)
 from .index import BrandIndex, load_pool
 from .review import FREEZE_AT, parse_human
-from .text import blank, clean_raw, normalize, split_parts
+from .text import blank, clean_raw, normalize, split_parts, brand_key
 from . import store
 
 BUNDLE_COLS = ["key", "狀態", "抽查", "出現在哪些L1", "品牌欄", "商品數",
+               "範例商品名稱", "範例商品網址",
                "suggest brand name", CONF_COL,
                "shp brand name1", "shp brand name2", "shp brand name3"] \
     + HUMAN_COLS \
-    + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目", "範例商品名稱",
+    + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目",
        "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核"]
 
 
@@ -71,6 +73,21 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
                 if samp == "★":
                     item["_has_sample_star"] = True
                     
+    # 建立 key -> (title, url) 映射庫，確保 100% 每一筆品牌字串都有代表性商品名稱與點擊網址
+    key_goods_map: dict[str, tuple[str, str]] = {}
+    if hasattr(cfg, "cache_path") and cfg.cache_path and cfg.cache_path.exists():
+        log("建立商品名稱與商品網址對照庫…")
+        try:
+            con_g = sqlite3.connect(cfg.cache_path)
+            for b_val, t_val, i_val, u_val in con_g.execute("SELECT brand, title, item_id, url FROM goods"):
+                k_val = brand_key(b_val, t_val, i_val)
+                if k_val not in key_goods_map:
+                    u_final = u_val or f"https://www.momoshop.com.tw/product/{i_val}"
+                    key_goods_map[k_val] = (t_val or "", u_final)
+            con_g.close()
+        except Exception as err:
+            log(f"   (快取讀取提示: {err})")
+
     log(f"彙總完成，全站唯一待審/審核品牌字串共 {len(merged):,} 個，建立排序…")
     
     rows = []
@@ -79,6 +96,14 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
         item["出現在哪些L1"] = "、".join(sorted(item.pop("_l1s")))
         item["商品數"] = item.pop("_goods")
         
+        k = item["key"]
+        if k in key_goods_map:
+            t_sample, u_sample = key_goods_map[k]
+            if not item.get("範例商品名稱"):
+                item["範例商品名稱"] = t_sample
+            if not item.get("範例商品網址"):
+                item["範例商品網址"] = u_sample
+
         if item.pop("_st_has_pending"):
             item["狀態"] = ST_PENDING
             ord_val = 1
@@ -104,11 +129,12 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
 
     widths = {
-        "key": 22, "狀態": 10, "抽查": 6, "出現在哪些L1": 24, "品牌欄": 22, "商品數": 10,
-        "suggest brand name": 22, CONF_COL: 10, "shp brand name1": 24,
-        "shp brand name2": 24, "shp brand name3": 24, H_PICK: 16, H_REASON: 20,
-        H_NOTE: 18, "判斷路徑": 26, "判斷說明": 36, "商品名稱【】": 20, "主要類目": 16,
-        "範例商品名稱": 38, "suggest brand id": 14, "新增品牌名稱": 18, "No brand原因": 18, "上次審核": 20
+        "key": 22, "狀態": 10, "抽查": 6, "出現在哪些L1": 22, "品牌欄": 22, "商品數": 8,
+        "範例商品名稱": 42, "範例商品網址": 38,
+        "suggest brand name": 22, CONF_COL: 8, "shp brand name1": 22,
+        "shp brand name2": 22, "shp brand name3": 22, H_PICK: 16, H_REASON: 20,
+        H_NOTE: 18, "判斷路徑": 24, "判斷說明": 34, "商品名稱【】": 18, "主要類目": 14,
+        "suggest brand id": 14, "新增品牌名稱": 16, "No brand原因": 16, "上次審核": 18
     }
 
     log(f"輸出 Excel 檔至 {target.name}…")
@@ -125,7 +151,8 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
             ws.write(0, j, col, fmt)
             ws.set_column(j, j, widths.get(col, 14))
 
-        ws.freeze_panes(1, FREEZE_AT)
+        # 凍結首列與前 6 欄（key, 狀態, 抽查, L1, 品牌欄, 商品數）
+        ws.freeze_panes(1, 6)
         ws.autofilter(0, 0, max(len(out_df), 1), len(out_df.columns) - 1)
 
     log(f"[OK] 成功產出：{target}")

@@ -198,7 +198,7 @@ def write_review(path: Path, review: pd.DataFrame, items: pd.DataFrame):
                      {"狀態": 11, "抽查": 5, "歧義": 5, "累積覆蓋": 9, "群組": 7, "品牌欄": 22,
                       "商品數": 7, "suggest brand name": 24, CONF_COL: 9,
                       "shp brand name1": 26, "shp brand name2": 26, "shp brand name3": 26,
-                      "範例商品名稱": 40, "判斷說明": 45, "判斷路徑": 22, "上次審核": 18,
+                      "範例商品名稱": 40, "範例商品網址": 36, "判斷說明": 45, "判斷路徑": 22, "上次審核": 18,
                       "商品名稱【】": 18, "主要類目": 16}, FREEZE_AT)
         if items.empty:
             items = pd.DataFrame([{c: "" for c in ITEM_COLS}])

@@ -27,10 +27,11 @@ from .text import NOBRAND_WORDS, blank, clean_raw, normalize
 # 先看狀態與品牌欄 → 再看系統建議與三個候選 → 然後就地填【人工】判斷。
 # 你要選的候選一定在你要填的格子「左邊」，不需要左右來回捲動。
 REVIEW_COLS = ["key", "狀態", "抽查", "歧義", "累積覆蓋", "群組", "品牌欄", "商品數",
+               "範例商品名稱", "範例商品網址",
                "suggest brand name", CONF_COL,
                "shp brand name1", "shp brand name2", "shp brand name3"] \
     + HUMAN_COLS \
-    + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目", "範例商品名稱",
+    + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目",
        "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核"]
 FREEZE_AT = REVIEW_COLS.index(H_NOTE) + 1          # 凍結到【人工】備註，往右捲動時決策資訊不會消失
 
@@ -177,7 +178,7 @@ def _prefill(rule):
 def build_review(kinfo, kres, rules, sample_n, rng_seed=42) -> pd.DataFrame:
     rv = kinfo.join(kres).reset_index().rename(columns={
         "raw": "品牌欄", "bracket": "商品名稱【】", "cat": "主要類目", "sku": "商品數", "title": "範例商品名稱",
-        "index": "key"})
+        "url": "範例商品網址", "index": "key"})
     rv["抽查"] = ""
     decided = rv["key"].map(lambda k: rules.get(k))
     pre = decided.map(_prefill)

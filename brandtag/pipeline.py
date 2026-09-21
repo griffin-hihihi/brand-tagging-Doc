@@ -76,7 +76,7 @@ def run_l1(cfg, con, pool, l1: str, log=print, write_excel=True) -> dict:
     items["key"] = [brand_key(b, t, i) for b, t, i in zip(items["brand"], items["title"], items[c["id"]])]
 
     g = items.groupby("key", sort=False)
-    kinfo = g.agg(raw=("brand", "first"), title=("title", "first"), sku=(c["id"], "size"))
+    kinfo = g.agg(raw=("brand", "first"), title=("title", "first"), url=("url", "first"), sku=(c["id"], "size"))
     kinfo["bracket"] = items.groupby("key", sort=False)["title"].first().map(extract_bracket)
     cc = items.groupby(["key", "l2"]).size().reset_index(name="n").sort_values("n", ascending=False)
     kinfo["cat"] = cc.drop_duplicates("key").set_index("key")["l2"]
