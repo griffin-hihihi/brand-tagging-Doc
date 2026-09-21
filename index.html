@@ -44,10 +44,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -65,7 +67,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -123,7 +125,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="切換至深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="slate" data-md-color-accent="indigo"  aria-label="切換至深色模式"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切換至深色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -133,7 +135,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="切換至淺色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="slate" data-md-color-accent="indigo"  aria-label="切換至淺色模式"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切換至淺色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -297,19 +299,19 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 專案目標與總體決策階層（大規則）
+        1. 專案目標與核心原則
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 專案目標與總體決策階層（大規則）">
+    <nav class="md-nav" aria-label="1. 專案目標與核心原則">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 作業目標
+        1.1 業務痛點與專案目標
       
     </span>
   </a>
@@ -320,18 +322,7 @@
   <a href="#12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 總體決策優先級（大規則）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 三大輸出類型定義
+        1.2 三大不變原則
       
     </span>
   </a>
@@ -347,19 +338,19 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 判斷原則
+        2. 總體決策體系與判定流程
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 判斷原則">
+    <nav class="md-nav" aria-label="2. 總體決策體系與判定流程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        原則一：以子品牌為主（最具體原則）
+        2.1 全局決策流程架構
       
     </span>
   </a>
@@ -367,32 +358,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        原則二：品類優先與避免跨類別誤判
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        原則三：短縮寫謹慎處理與防偽別名
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        原則四：同實體品牌合併
+        2.2 具體決策路徑對照表
       
     </span>
   </a>
@@ -405,13 +374,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-22" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 全站 22 個品類目前對應成果總覽
+        3. 系統輸出規格與真實資料範例
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. 系統輸出規格與真實資料範例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 三大標準輸出類型定義
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 輸出報表綱要與欄位定義 (Schema)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 真實產出資料抽樣範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -419,19 +427,19 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 使用者與團隊協同作業流程
+        4. 全站成效總覽與品質分級管理
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. 使用者與團隊協同作業流程">
+    <nav class="md-nav" aria-label="4. 全站成效總覽與品質分級管理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#41" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟一：資料匯入與預處理
+        4.1 信心度分級與風險控管
       
     </span>
   </a>
@@ -439,54 +447,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#42-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟二：系統初判與規則匹配
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#temp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟三：打包產出全站審核總表給 Temp
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#temp_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟四：Temp 團隊批次審核
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟五：收回審核檔並一鍵回灌規則庫
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟六：全站自動套用並產出結果總表
+        4.2 全站 22 個品類目前對應成果總覽
       
     </span>
   </a>
@@ -502,10 +466,60 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 決策路徑與規則對照表
+        5. 待審資料之人機協同作業流程
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="5. 待審資料之人機協同作業流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：一鍵打包產出全站待審總表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：Temp 團隊標記指引
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：收回總表一鍵回灌規則庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟四：規則庫自動記憶並全站廣播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -513,30 +527,19 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 信心度指標與審核建議
+        6. 系統架構與技術可靠性保障
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 系統架構、技術實作與資料結構
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. 系統架構、技術實作與資料結構">
+    <nav class="md-nav" aria-label="6. 系統架構與技術可靠性保障">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#71" class="md-nav__link">
+  <a href="#61" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.1 系統分層架構
+        6.1 五層模組化架構設計
       
     </span>
   </a>
@@ -544,66 +547,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#72" class="md-nav__link">
+  <a href="#62" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.2 核心比對技術與演算法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#73-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.3 外部查證機制（AI 輔助商標官網查證）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#74" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.4 規則資料庫與對照表實例節錄
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.4 規則資料庫與對照表實例節錄">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-decision_log-in-brand_rulesdb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 人工決策歷程表（decision_log in brand_rules.db）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-curated_aliasescsv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 已查證中英別名表（curated_aliases.csv）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-curated_entity_linkscsv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 已查證同實體品牌表（curated_entity_links.csv）
+        6.2 關鍵演算法與可靠性機制
       
     </span>
   </a>
@@ -614,17 +561,12 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#8-faq" class="md-nav__link">
+  <a href="#7-stakeholder-faq" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. 常見問題說明 (FAQ)
+        7. 利害關係人常見問答 (Stakeholder FAQ)
       
     </span>
   </a>
@@ -669,19 +611,19 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 專案目標與總體決策階層（大規則）
+        1. 專案目標與核心原則
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 專案目標與總體決策階層（大規則）">
+    <nav class="md-nav" aria-label="1. 專案目標與核心原則">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 作業目標
+        1.1 業務痛點與專案目標
       
     </span>
   </a>
@@ -692,18 +634,7 @@
   <a href="#12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 總體決策優先級（大規則）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 三大輸出類型定義
+        1.2 三大不變原則
       
     </span>
   </a>
@@ -719,19 +650,19 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 判斷原則
+        2. 總體決策體系與判定流程
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 判斷原則">
+    <nav class="md-nav" aria-label="2. 總體決策體系與判定流程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        原則一：以子品牌為主（最具體原則）
+        2.1 全局決策流程架構
       
     </span>
   </a>
@@ -739,32 +670,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        原則二：品類優先與避免跨類別誤判
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        原則三：短縮寫謹慎處理與防偽別名
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        原則四：同實體品牌合併
+        2.2 具體決策路徑對照表
       
     </span>
   </a>
@@ -777,13 +686,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-22" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 全站 22 個品類目前對應成果總覽
+        3. 系統輸出規格與真實資料範例
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. 系統輸出規格與真實資料範例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 三大標準輸出類型定義
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 輸出報表綱要與欄位定義 (Schema)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 真實產出資料抽樣範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -791,19 +739,19 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 使用者與團隊協同作業流程
+        4. 全站成效總覽與品質分級管理
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. 使用者與團隊協同作業流程">
+    <nav class="md-nav" aria-label="4. 全站成效總覽與品質分級管理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#41" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟一：資料匯入與預處理
+        4.1 信心度分級與風險控管
       
     </span>
   </a>
@@ -811,54 +759,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#42-22" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟二：系統初判與規則匹配
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#temp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟三：打包產出全站審核總表給 Temp
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#temp_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟四：Temp 團隊批次審核
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟五：收回審核檔並一鍵回灌規則庫
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟六：全站自動套用並產出結果總表
+        4.2 全站 22 個品類目前對應成果總覽
       
     </span>
   </a>
@@ -874,10 +778,60 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 決策路徑與規則對照表
+        5. 待審資料之人機協同作業流程
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="5. 待審資料之人機協同作業流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：一鍵打包產出全站待審總表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：Temp 團隊標記指引
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：收回總表一鍵回灌規則庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟四：規則庫自動記憶並全站廣播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -885,30 +839,19 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 信心度指標與審核建議
+        6. 系統架構與技術可靠性保障
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 系統架構、技術實作與資料結構
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. 系統架構、技術實作與資料結構">
+    <nav class="md-nav" aria-label="6. 系統架構與技術可靠性保障">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#71" class="md-nav__link">
+  <a href="#61" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.1 系統分層架構
+        6.1 五層模組化架構設計
       
     </span>
   </a>
@@ -916,66 +859,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#72" class="md-nav__link">
+  <a href="#62" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.2 核心比對技術與演算法
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#73-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.3 外部查證機制（AI 輔助商標官網查證）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#74" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7.4 規則資料庫與對照表實例節錄
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.4 規則資料庫與對照表實例節錄">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-decision_log-in-brand_rulesdb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 人工決策歷程表（decision_log in brand_rules.db）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-curated_aliasescsv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 已查證中英別名表（curated_aliases.csv）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-curated_entity_linkscsv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 已查證同實體品牌表（curated_entity_links.csv）
+        6.2 關鍵演算法與可靠性機制
       
     </span>
   </a>
@@ -986,17 +873,12 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#8-faq" class="md-nav__link">
+  <a href="#7-stakeholder-faq" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. 常見問題說明 (FAQ)
+        7. 利害關係人常見問答 (Stakeholder FAQ)
       
     </span>
   </a>
@@ -1020,42 +902,193 @@
 
 
 
-<h1 id="_1">競網品牌對應作業說明書：判斷原則、流程與系統架構</h1>
-<p><strong>版本</strong>：v1.4　｜　<strong>適用範圍</strong>：momo 站點商品（545,572 品號）　｜　<strong>最近更新</strong>：2026/09/21</p>
+<h1 id="_1">競網品牌對應作業說明書：決策體系、判定規則與輸出標準</h1>
+<blockquote>
+<p><strong>版本</strong>：v1.5　｜　<strong>適用範圍</strong>：momo 全站商品（545,572 品號）　｜　<strong>最後更新</strong>：2026/09/21</p>
+</blockquote>
 <hr />
-<h2 id="1">1. 專案目標與總體決策階層（大規則）</h2>
-<h3 id="11">1.1 作業目標</h3>
-<p>本作業旨在將競網（momo）商品中格式混亂的品牌文字（中英並列、母子品牌、型號混雜、無品牌或周邊配件等），標準化對應至既有之標準品牌庫，產出一致、乾淨且去重的商品品牌資料庫。</p>
-<h3 id="12">1.2 總體決策優先級（大規則）</h3>
-<p>系統在判定任何一筆商品時，並非隨機嘗試比對，而是嚴格依循以下<strong>五層決策優先順序（Decision Hierarchy）</strong>：</p>
-<pre class="mermaid"><code>flowchart TD
-    Start["商品輸入 (品號、品牌欄、商品名稱、品類)"] --&gt; P1{"第一優先：&lt;br&gt;歷史人工審核規則？&lt;br&gt;(路徑 3.1 / 3.2)"}
-    P1 -- "有記錄" --&gt; End1["直接採用人工判定結果&lt;br&gt;(信心度 100分，最高優先權)"]
-    P1 -- "無記錄" --&gt; P2{"第二優先：&lt;br&gt;查證別名與同實體？&lt;br&gt;(curated_aliases / entity_links)"}
-    P2 -- "命中查證對照" --&gt; End2["套用查證別名或同實體主要ID&lt;br&gt;(如: 綠鐘 ➔ GREEN BELL)"]
-    P2 -- "無對照" --&gt; P3{"第三優先：&lt;br&gt;競網品牌欄是否有填？"}
-
-    P3 -- "品牌欄有值" --&gt; End3["進入品牌欄比對邏輯 (1.x)&lt;br&gt;優先考量同品類、子品牌位置位移"]
-    P3 -- "品牌欄空白" --&gt; End4["降級至商品名稱比對 (2.x)&lt;br&gt;依序檢查相容配件、名稱【】、內文關鍵詞"]
-
-    End3 --&gt; P4{"比對結果是否確定？"}
-    End4 --&gt; P4
-    P4 -- "確定" --&gt; Final["輸出標準結論"]
-    P4 -- "查無相符" --&gt; P5["進入收斂邏輯：&lt;br&gt;具品牌特徵 ➔ 建議新增品牌 (1.6 / 2.3)&lt;br&gt;無品牌特徵 ➔ 無品牌 (1.7 / 2.5)"]</code></pre>
+<h2 id="1">1. 專案目標與核心原則</h2>
+<h3 id="11">1.1 業務痛點與專案目標</h3>
+<p>電商競網（momo）商品中，品牌欄位填寫格式極度混亂，常見「中英並列」、「母子品牌重疊」、「型號規格混入品牌欄」、「空白未填」或「副廠周邊配件借用原廠名稱」等現象。</p>
+<p>本專案之核心目標在於建立一套<strong>高精準度、可重複執行、具備自學習記憶之品牌標準化對應系統</strong>，將競網商品全數標準化對應至既有之正式品牌庫，產出一致、乾淨且去重的商品品牌主檔。</p>
+<h3 id="12">1.2 三大不變原則</h3>
+<p>為確保跨品類、跨批次之資料標準完全一致，系統全流程嚴格貫徹以下三大原則：</p>
 <ol>
-<li><strong>第一優先：歷史人工審核記錄（最高權限）</strong></li>
-<li>凡是先前在審核表中經人工或 Temp 團隊確認過的品牌字串，系統直接沿用，絕不被演算法推翻。</li>
-<li><strong>第二優先：經查證之別名與同實體關聯</strong></li>
-<li>官方中英文名稱對照（如「綠鐘 ➔ GREEN BELL」）或同品牌重複代碼（如 <code>H&amp;H</code> 與 <code>Herb &amp; Health</code>），優先於文字模糊猜測。</li>
-<li><strong>第三優先：品牌欄位比對（1.x 路徑）</strong></li>
-<li>競網品牌欄有填時，以此欄位為主要依據，依序檢驗完全相符、子品牌位置優先、同實體主要 ID 等。</li>
-<li><strong>第四優先：商品名稱降級比對（2.x 路徑）</strong></li>
-<li>品牌欄空白時，系統降級檢驗標題：優先排除相容周邊配件（如保護貼），再擷取標題開頭【】與內文關鍵詞。</li>
-<li><strong>第五優先：新品牌建議與白牌收斂</strong></li>
-<li>文字具合法商標特徵但庫內無收錄者，歸為「建議新增品牌」；純規格詞、賣場描述或無資訊者，收斂為「無品牌」。</li>
+<li><strong>最具體子品牌優先</strong></li>
+<li>不論 3C 科技、美妝或居家生活，全品類標準保持一致：<strong>當母品牌與子品牌同時存在於品牌庫時，優先歸入最具體的子品牌</strong>。<ul>
+<li>例：<code>Apple iPhone 15</code> ➔ 同時包含 Apple 與 iPhone ➔ <strong>歸入 <code>iphone</code></strong>。</li>
+<li>例：<code>ASUS ROG 電競主機板</code> ➔ 同時包含 ASUS 與 ROG ➔ <strong>歸入 <code>ROG</code></strong>。</li>
+<li>例：<code>Kanebo KATE 凱婷 眉筆</code> ➔ 同時包含 Kanebo 與 KATE ➔ <strong>歸入 <code>KATE 凱婷</code></strong>。</li>
+</ul>
+</li>
+<li>
+<p>若子品牌尚未收錄於品牌庫，則依現有資料邊界歸入母品牌（例：<code>Apple iPad Air</code> ➔ 庫內無 iPad 品牌 ➔ <strong>歸入 <code>Apple</code></strong>），不自行憑空建立未經核准之代碼。</p>
+</li>
+<li>
+<p><strong>品類邊界隔離（杜絕跨類誤判）</strong></p>
+</li>
+<li>比對時優先校驗商品所屬之一級品類。</li>
+<li>
+<p>若商品文字僅局部包含某個品牌名稱，但兩者品類完全不符，系統判定為不相符。例如書籍類漫畫《KING GOLF》內含單字 <code>GOLF</code>，而品牌庫中的 <code>GOLF</code> 登記為汽車配件，系統直接否決，防止跨領域誤對應。</p>
+</li>
+<li>
+<p><strong>相容周邊與副廠收斂為無品牌</strong></p>
+</li>
+<li>手機保護貼、副廠手把配件、轉接線等商品，其本體並非原廠品牌。系統一律將相容描述（如「適用 iPhone」、「Switch 副廠」）辨識為周邊配件，<strong>收斂為無品牌（No brand）</strong>，避免污染原廠品牌庫銷售統計。</li>
 </ol>
 <hr />
-<h3 id="13">1.3 三大輸出類型定義</h3>
+<h2 id="2">2. 總體決策體系與判定流程</h2>
+<h3 id="21">2.1 全局決策流程架構</h3>
+<p>系統判定任何一筆商品時，依循由高確定性到模糊特徵的層次進行嚴格檢驗：</p>
+<pre class="mermaid"><code>flowchart TD
+    Start["商品資料輸入&lt;br&gt;(品號、競網品牌欄、商品名稱、品類)"] --&gt; Step1{"【階段一】歷史確定性檢驗&lt;br&gt;先前是否曾經人工確認過？"}
+
+    Step1 -- "有歷史審核記錄" --&gt; End1["直接套用審核判定結果&lt;br&gt;(路徑 3.1 / 3.2，信心度 100 分)"]
+    Step1 -- "無歷史記錄" --&gt; Step2{"【階段二】雙軌比對邏輯&lt;br&gt;競網品牌欄是否有值？"}
+
+    Step2 -- "品牌欄有值" --&gt; TrackA["【軌道 A：品牌欄比對】&lt;br&gt;1.1 相容/無品牌文字排除&lt;br&gt;1.3 品牌庫完全相符(含子品牌優先)&lt;br&gt;1.4 庫內重複取業績最高&lt;br&gt;1.5 多品牌歧義送審&lt;br&gt;1.6 具品牌特徵但庫內無&lt;br&gt;1.7 規格詞/描述詞收斂"]
+
+    Step2 -- "品牌欄空白" --&gt; TrackB["【軌道 B：商品名稱降級比對】&lt;br&gt;2.1 相容/副廠配件排除&lt;br&gt;2.2 名稱開頭【】命中品牌庫&lt;br&gt;2.3 名稱開頭【】為新品牌&lt;br&gt;2.4 標題內文中段關鍵詞命中&lt;br&gt;2.5 標題純描述詞收斂"]
+
+    TrackA --&gt; Step3{"【階段三】三態收斂與輸出"}
+    TrackB --&gt; Step3
+
+    Step3 --&gt; Out1["正式品牌庫品牌 (TYPE_POOL)"]
+    Step3 --&gt; Out2["建議新增品牌 (TYPE_NEW)"]
+    Step3 --&gt; Out3["無品牌 / No brand (TYPE_NB)"]</code></pre>
+<hr />
+<h3 id="22">2.2 具體決策路徑對照表</h3>
+<p>點擊下方區塊可展開檢視各軌道之詳細判定條件、代碼與實例說明：</p>
+<details class="info" open="open">
+<summary>軌道 A：品牌欄有填之決策路徑 (1.1 ～ 1.7)</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">路徑代碼</th>
+<th style="text-align: left;">判定情況</th>
+<th style="text-align: center;">輸出類型</th>
+<th style="text-align: center;">預設信心度</th>
+<th style="text-align: left;">典型範例說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1.1</strong></td>
+<td style="text-align: left;">品牌欄文字明確標示無品牌</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: center;">97</td>
+<td style="text-align: left;">品牌欄填寫「無品牌」、「其他」、「自有品牌」、「OEM」</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.2</strong></td>
+<td style="text-align: left;">品牌欄文字為相容性描述</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: center;">90</td>
+<td style="text-align: left;">品牌欄填寫「適用 iPhone 充電線」、「相容 Switch 手把」</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.3</strong></td>
+<td style="text-align: left;">品牌庫完全相符（含子品牌優先）</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: center;">96</td>
+<td style="text-align: left;">「BURBERRY」完全相符；「Apple iPhone」取子品牌 <code>iphone</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.4</strong></td>
+<td style="text-align: left;">品牌庫有多筆重複建檔，取業績最高</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: center;">90</td>
+<td style="text-align: left;">品牌庫同時有 <code>Nintendo</code> 與重複代碼，取歷史銷售最高之主要 ID</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.5</strong></td>
+<td style="text-align: left;">多個不同品牌同時相符，存在歧義</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: center;">39</td>
+<td style="text-align: left;">品牌欄填「日本」，同時命中多個包含日本的品牌，列入待審</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.6</strong></td>
+<td style="text-align: left;">具明確商標特徵，但現有品牌庫未收錄</td>
+<td style="text-align: center;"><span class="badge badge-new">TYPE_NEW</span></td>
+<td style="text-align: center;">82</td>
+<td style="text-align: left;">「良值」、「RedMoon」，字面具商標特徵但庫內查無，建議新增</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1.7</strong></td>
+<td style="text-align: left;">品牌欄內容實為規格或促銷描述詞</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: center;">80</td>
+<td style="text-align: left;">品牌欄填寫「特價出清」、「收納用品」、「買一送一」</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info" open="open">
+<summary>軌道 B：品牌欄空白之降級比對路徑 (2.1 ～ 2.5)</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">路徑代碼</th>
+<th style="text-align: left;">判定情況</th>
+<th style="text-align: center;">輸出類型</th>
+<th style="text-align: center;">預設信心度</th>
+<th style="text-align: left;">典型範例說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>2.1</strong></td>
+<td style="text-align: left;">商品為配件、耗材或相容周邊</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: center;">88</td>
+<td style="text-align: left;">標題「iPhone 15 鋼化膜」、「MacBook 磁吸防窺片」，本體非原廠</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2.2</strong></td>
+<td style="text-align: left;">商品名稱開頭【】命中現有品牌庫</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: center;">86</td>
+<td style="text-align: left;">商品名稱為「【AMANO】原廠打卡紙」，成功提取 <code>AMANO</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2.3</strong></td>
+<td style="text-align: left;">商品名稱開頭【】具品牌特徵但庫內無</td>
+<td style="text-align: center;"><span class="badge badge-new">TYPE_NEW</span></td>
+<td style="text-align: center;">72</td>
+<td style="text-align: left;">商品名稱為「【MEIDIAN】固體面膜」，提取新品牌名稱</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2.4</strong></td>
+<td style="text-align: left;">由商品標題內文中段比對到品牌</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: center;">52</td>
+<td style="text-align: left;">標題內文中段出現特定長品牌名（非配件情境）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2.5</strong></td>
+<td style="text-align: left;">標題與內文皆無可信品牌資訊</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: center;">85</td>
+<td style="text-align: left;">標題為純描述性文字（如「加厚純棉吸水毛巾 3 入裝」）</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info" open="open">
+<summary>歷史記憶容器與人工覆蓋機制 (3.1 ～ 3.2)</summary>
+<p>這兩條路徑是系統的<strong>「自動記憶容器」</strong>，不需要人員事前手動逐筆設定：</p>
+<ul>
+<li><strong>3.1 套用歷史審核品牌字串（全站共用）</strong>：
+  當某個品牌字串先前已由人工或 Temp 在審核總表中確認過（例如確認「綠鐘」對應為 <code>GREEN BELL</code>），該決策永久存入資料庫。日後全站 22 個品類只要再次出現該字串，系統直接套用（信心度 100 分），絕不被演算法推翻。</li>
+<li><strong>3.2 套用單一品號例外覆蓋（單品專屬）</strong>：
+  僅用於極少數「字串本身不宜全域更動，但該單一特例品號需個別指定」之情境（信心度 100 分）。</li>
+</ul>
+</details>
+<hr />
+<h2 id="3">3. 系統輸出規格與真實資料範例</h2>
+<h3 id="31">3.1 三大標準輸出類型定義</h3>
+<p>系統產出的每筆商品最終收斂為以下三態之一，各自對應明確的後續處理機制：</p>
 <table>
 <thead>
 <tr>
@@ -1067,52 +1100,241 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>品牌庫品牌</strong></td>
-<td style="text-align: left;">商品成功對應至現有品牌庫中的正式品牌</td>
-<td style="text-align: center;"><code>TYPE_POOL</code></td>
-<td style="text-align: left;">給予標準品牌代碼（<code>brand_id</code>），直接匯入下游商品庫。</td>
+<td style="text-align: left;"><strong>品牌庫正式品牌</strong></td>
+<td style="text-align: left;">商品成功對應至現有正式品牌庫</td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: left;">指派正式 <code>suggest brand id</code>，直接對齊主數據供業務與報表使用。</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>建議新增品牌</strong></td>
-<td style="text-align: left;">商品具有明確品牌名稱，但現有品牌庫尚未收錄</td>
-<td style="text-align: center;"><code>TYPE_NEW</code></td>
-<td style="text-align: left;">彙總產出建議清單，由品牌庫管理者評估收錄。</td>
+<td style="text-align: left;">商品具明確品牌商標，但現有品牌庫尚未收錄</td>
+<td style="text-align: center;"><span class="badge badge-new">TYPE_NEW</span></td>
+<td style="text-align: left;">產出建議名單，供品牌庫管理者評估建檔，維護品牌庫完整性。</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>無品牌 (No brand)</strong></td>
-<td style="text-align: left;">商品為白牌、通用規格品，或屬於副廠配件</td>
-<td style="text-align: center;"><code>TYPE_NB</code></td>
-<td style="text-align: left;">標記為無品牌，並記錄判定原因（如配件相容品、無品牌標示等）。</td>
+<td style="text-align: left;">白牌、通用規格品、或非原廠之相容周邊配件</td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: left;">記錄判定原因（如相容配件、通用規格等），不指派代碼。</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="2">2. 判斷原則</h2>
-<h3 id="_2">原則一：以子品牌為主（最具體原則）</h3>
-<p>各品類（不論 3C 科技或美妝生活）標準保持一致，優先以最具體的子品牌為對應目標：
-- <strong>當母品牌與子品牌同時存在於品牌庫</strong>：優先歸入子品牌。
-  - 例：<code>Apple iPhone 15</code> ➔ 同時包含 Apple 與 iPhone ➔ <strong>歸為 <code>iphone</code></strong>。
-  - 例：<code>Kanebo KATE 凱婷 粉底液</code> ➔ 同時包含 Kanebo 與 KATE ➔ <strong>歸為 <code>KATE 凱婷</code></strong>。
-  - 例：<code>ASUS ROG 主機板</code> ➔ 同時包含 ASUS 與 ROG ➔ <strong>歸為 <code>ROG</code></strong>。
-- <strong>當子品牌尚未建立於品牌庫</strong>：歸入母品牌，不自行建立未確認之代碼。
-  - 例：<code>Apple iPad Air</code> ➔ 品牌庫內有 Apple，但尚無 iPad 品牌 ➔ <strong>依現有品牌庫邊界歸為 <code>Apple</code></strong>。</p>
-<h3 id="_3">原則二：品類優先與避免跨類別誤判</h3>
-<ul>
-<li>比對時優先考量商品所屬之一級品類。</li>
-<li>若商品文字僅局部包含某個品牌名稱，但兩者品類完全不符（例如書籍類漫畫《KING GOLF》包含單字 <code>GOLF</code>，而品牌庫中的 <code>GOLF</code> 登記為汽車配件），系統判定為不相符，避免跨品類誤對應。</li>
-</ul>
-<h3 id="_4">原則三：短縮寫謹慎處理與防偽別名</h3>
-<ul>
-<li>1～3 個英文字母之短縮寫（如 GB、HH、HR），若中文名稱未獲正式證實，不自動建立中英連結。</li>
-<li>例如競網出現「GB 綠鐘」（日本美甲工具），系統不會自動對應到母嬰品牌的「gb」，需由人工確認或透過官方查證後再行建檔。</li>
-</ul>
-<h3 id="_5">原則四：同實體品牌合併</h3>
-<ul>
-<li>若品牌庫中存在因歷史建檔造成的同品牌重複代碼（如 <code>H&amp;H</code> 與 <code>Herb &amp; Health</code> 為同一品牌），在確認同實體後，依據歷史累積銷量收斂至主要代碼，避免資料庫重複割裂。</li>
-</ul>
+<h3 id="32-schema">3.2 輸出報表綱要與欄位定義 (Schema)</h3>
+<p>每批次執行完成後產出之品類結果檔（<code>output/momo/&lt;品類&gt;_result.xlsx</code>）包含以下核心欄位：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">欄位名稱</th>
+<th style="text-align: center;">資料型態</th>
+<th style="text-align: left;">範例內容</th>
+<th style="text-align: left;">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>品號</strong></td>
+<td style="text-align: center;">數字/文字</td>
+<td style="text-align: left;"><code>10000402</code></td>
+<td style="text-align: left;">競網商品唯一識別代碼</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>l1</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>Beauty</code></td>
+<td style="text-align: left;">商品所屬之一級品類</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>brand</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>BURBERRY 巴寶莉</code></td>
+<td style="text-align: left;">競網商品原始品牌欄位內容（若空白則為 nan）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>title</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>【BURBERRY 巴寶莉】風格男性淡香水</code></td>
+<td style="text-align: left;">競網商品原始標題</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>suggest brand name</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>Burberry</code></td>
+<td style="text-align: left;">系統最終建議對應之品牌名稱（或標示建議新增 / No brand）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>suggest brand id</strong></td>
+<td style="text-align: center;">數字</td>
+<td style="text-align: left;"><code>1146353</code></td>
+<td style="text-align: left;">正式品牌庫品牌 ID（若為新品牌或無品牌則為空）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>新增品牌名稱</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>良值</code></td>
+<td style="text-align: left;">若判定為建議新增品牌，此處填入提取出之新品牌字串</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>No brand原因</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>相容/副廠配件</code></td>
+<td style="text-align: left;">若判定為無品牌，此處記錄判定依據</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>信心度</strong></td>
+<td style="text-align: center;">整數</td>
+<td style="text-align: left;"><code>96</code></td>
+<td style="text-align: left;">系統計算之量化信心分數（0～100 分）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>判斷路徑</strong></td>
+<td style="text-align: center;">文字</td>
+<td style="text-align: left;"><code>1.3 品牌欄完全相符</code></td>
+<td style="text-align: left;">該筆判定所命中之具體規則節點編號與名稱</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="3-22">3. 全站 22 個品類目前對應成果總覽</h2>
-<p>以下為系統目前針對 momo 站點全品類跑完之最新統計數據：</p>
+<h3 id="33">3.3 真實產出資料抽樣範例</h3>
+<p>以下為直接取自系統實際運算產出之真實商品抽樣記錄，涵蓋各典型決策場景：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">品號</th>
+<th style="text-align: left;">品類 (l1)</th>
+<th style="text-align: left;">競網品牌欄</th>
+<th style="text-align: left;">商品名稱 (節錄)</th>
+<th style="text-align: center;">最終判定品牌</th>
+<th style="text-align: center;">品牌 ID</th>
+<th style="text-align: center;">判定類型</th>
+<th style="text-align: left;">判斷路徑</th>
+<th style="text-align: center;">信心度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>10000402</code></td>
+<td style="text-align: left;">Beauty</td>
+<td style="text-align: left;">BURBERRY 巴寶莉</td>
+<td style="text-align: left;">【BURBERRY 巴寶莉】風格男性淡香水 EDT 100ml</td>
+<td style="text-align: center;"><strong>Burberry</strong></td>
+<td style="text-align: center;"><code>1146353</code></td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: left;">1.3 品牌欄完全相符</td>
+<td style="text-align: center;"><span class="badge badge-score">96</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10007337</code></td>
+<td style="text-align: left;">Game Kingdom</td>
+<td style="text-align: left;">Nintendo 任天堂</td>
+<td style="text-align: left;">【Nintendo 任天堂】NS Switch SEGA 遊戲合輯</td>
+<td style="text-align: center;"><strong>Nintendo</strong></td>
+<td style="text-align: center;"><code>1146819</code></td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: left;">1.4 重複取業績最高</td>
+<td style="text-align: center;"><span class="badge badge-score">90</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10000180</code></td>
+<td style="text-align: left;">Mobile &amp; Gadgets</td>
+<td style="text-align: left;"><em>(空白)</em></td>
+<td style="text-align: left;">【AMANO】原廠標誌 六欄位打卡紙 3包入</td>
+<td style="text-align: center;"><strong>AMANO</strong></td>
+<td style="text-align: center;"><code>1085916</code></td>
+<td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
+<td style="text-align: left;">2.2 標題【】提取</td>
+<td style="text-align: center;"><span class="badge badge-score">86</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10233164</code></td>
+<td style="text-align: left;">Game Kingdom</td>
+<td style="text-align: left;">良值</td>
+<td style="text-align: left;">【良值】Switch 副廠手把專用腕帶 2入</td>
+<td style="text-align: center;"><em>(建議品牌庫新增)</em></td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><span class="badge badge-new">TYPE_NEW</span></td>
+<td style="text-align: left;">1.6 品牌庫未收錄</td>
+<td style="text-align: center;"><span class="badge badge-score">82</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10002654</code></td>
+<td style="text-align: left;">Mobile &amp; Gadgets</td>
+<td style="text-align: left;">RedMoon</td>
+<td style="text-align: left;">【RedMoon】Xiaomi 小米12 防摔透明手機軟殼</td>
+<td style="text-align: center;"><em>(建議品牌庫新增)</em></td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><span class="badge badge-new">TYPE_NEW</span></td>
+<td style="text-align: left;">1.6 品牌庫未收錄</td>
+<td style="text-align: center;"><span class="badge badge-score">82</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10001894</code></td>
+<td style="text-align: left;">Mobile &amp; Gadgets</td>
+<td style="text-align: left;"><em>(空白)</em></td>
+<td style="text-align: left;">【台灣製造防窺片】MacBook Pro 16吋螢幕磁吸防窺片</td>
+<td style="text-align: center;"><strong>No brand</strong></td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: left;">2.1 配件/相容品排除</td>
+<td style="text-align: center;"><span class="badge badge-score">88</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>10225061</code></td>
+<td style="text-align: left;">Game Kingdom</td>
+<td style="text-align: left;"><em>(空白)</em></td>
+<td style="text-align: left;">【ipega】副廠 Switch 運動指套健身配件</td>
+<td style="text-align: center;"><strong>No brand</strong></td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><span class="badge badge-nb">TYPE_NB</span></td>
+<td style="text-align: left;">2.1 配件/相容品排除</td>
+<td style="text-align: center;"><span class="badge badge-score">88</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>抽樣解讀</strong>：
+- 範例 1、2 呈現品牌欄有值時，標準品牌之直接命中與重複品牌自動取大機制。
+- 範例 3 呈現品牌欄空白時，系統自動從標題括號提取品牌並正確關聯之能力。
+- 範例 4、5 呈現具備商業品牌特徵（良值、RedMoon）但品牌庫暫無之項目，自動歸入建議新增名單，不造成髒資料。
+- 範例 6、7 呈現非原廠之周邊相容品（MacBook 防窺片、Switch 副廠指套），精準識別為周邊配件並收斂為無品牌，確保原廠品牌數據純淨。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. 全站成效總覽與品質分級管理</h2>
+<h3 id="41">4.1 信心度分級與風險控管</h3>
+<p>系統為每一筆判定結果計算 0～100 分之量化信心指標，作為品質把關與人工抽檢之標準分流依據：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">信心度區間</th>
+<th style="text-align: center;">確定等級</th>
+<th style="text-align: center;">商品佔比</th>
+<th style="text-align: left;">品質定義與作業機制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>90～100 分</strong></td>
+<td style="text-align: center;">高度確定</td>
+<td style="text-align: center;"><strong>75.5%</strong></td>
+<td style="text-align: left;">規則完全命中、品牌庫唯一相符或已獲歷史審核確認。<strong>全自動採用，無須人工介入</strong>。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>75～89 分</strong></td>
+<td style="text-align: center;">大致可信</td>
+<td style="text-align: center;"><strong>18.4%</strong></td>
+<td style="text-align: left;">配件排除、標題開頭品牌或長字串正規化相符。<strong>系統標註抽檢星號（★），各品類僅需抽檢約 30 筆</strong>。</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>0～74 分</strong></td>
+<td style="text-align: center;">需人工確認</td>
+<td style="text-align: center;"><strong>6.1%</strong></td>
+<td style="text-align: left;">包含全新未知品牌、多品牌同分歧義或高疑義縮寫。<strong>系統自動打包為單一總表交由 Temp 審核</strong>。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="42-22">4.2 全站 22 個品類目前對應成果總覽</h3>
+<p>針對 momo 全站 545,572 品號進行全量運算後，各品類之分佈表現如下：</p>
 <table>
 <thead>
 <tr>
@@ -1384,327 +1606,136 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>成效摘要</strong>：全站 545,572 件商品中，<strong>93.9%</strong> 的商品已達成高確定性自動對應；僅剩 <strong>6.1%</strong>（約 3.3 萬件商品，對應約 1 萬個字串）需透過人工與 Temp 團隊審核。</p>
+<p><strong>成效摘要</strong>：
+- 全站 545,572 件商品中，高達 <strong>93.9%</strong> 已達成高確定性自動對應。
+- 僅剩 <strong>6.1%</strong>（約 3.3 萬件商品，去重後約 1 萬個品牌字串）集中納入審核名單，極大化節省人工作業成本。</p>
 </blockquote>
 <hr />
-<h2 id="4">4. 使用者與團隊協同作業流程</h2>
-<p>整體作業流程將繁雜的品號資料收斂為單一審核表，由 Temp 團隊進行批次標記後回灌系統：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[步驟一: 資料匯入與預處理] ➔ [步驟二: 系統初判與規則匹配]
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                        ↓
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[步驟四: Temp 團隊批次審核] 🠔 [步驟三: 打包產出全站審核總表 (Excel)]
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ↓
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[步驟五: 審核表回灌系統] ➔ [步驟六: 規則永久保存並產出全站結果]
+<h2 id="5">5. 待審資料之人機協同作業流程</h2>
+<p>針對前述 6.1% 需人工確認之項目，系統建立標準化的一鍵打包與回灌機制，形成閉環作業：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[步驟一: 一鍵打包全站待審總表] ──► review/momo/_momo_全站審核總表_Temp用.xlsx
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                      │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                                      ▼
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[步驟二: Temp 團隊於 Excel 標記] ──► 填寫代碼: v / 1,2,3 / 新品牌 / No brand
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                                      │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                                      ▼
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[步驟三: 收回 Excel 一鍵回灌] ────► 自動寫入 SQLite 規則庫 (brand_rules.db)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                                      │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                                      ▼
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>[步驟四: 規則廣播全站生效] ──────► 全站 22 品類結果即刻自動更新
 </code></pre></div>
-<h3 id="_6">步驟一：資料匯入與預處理</h3>
+<h3 id="_2">步驟一：一鍵打包產出全站待審總表</h3>
 <ul>
-<li>載入競網原始商品資料（商品名稱、品牌欄、品類）與標準品牌庫。</li>
-<li>系統自動去除公司組織別（如股份有限公司、生技、實業等）並完成文字標準化。</li>
+<li><strong>執行指令</strong>：<code>py run.py bundle-export</code></li>
+<li><strong>產出檔案</strong>：<code>review/momo/_momo_全站審核總表_Temp用.xlsx</code></li>
+<li><strong>設計特色</strong>：系統自動跨 22 個品類，將相同之待審字串<strong>去重合併為單一工作表</strong>，並自動凍結標題列、標註黃色填寫區，避免多檔案分散傳遞。</li>
 </ul>
-<h3 id="_7">步驟二：系統初判與規則匹配</h3>
-<ul>
-<li>系統依照「大規則」優先順序進行匹配，計算 0～100 分之量化信心度。</li>
-<li>遇到高疑義縮寫或缺中文品牌時，由 AI 輔助查證商標與官方背景，沉澱為靜態對照庫。</li>
-</ul>
-<h3 id="temp">步驟三：打包產出全站審核總表給 Temp</h3>
-<ul>
-<li>執行指令：<code>py run.py bundle-export</code></li>
-<li>系統自動掃描 22 個品類，將所有待審品牌字串<strong>去重合併為單一 Excel 總表</strong>：
-  <code>review/momo/_momo_全站審核總表_Temp用.xlsx</code></li>
-<li>表格已設定第一列凍結、欄寬自適應，並將「【人工】判斷」等填寫欄位以黃色高亮標註。</li>
-</ul>
-<h3 id="temp_1">步驟四：Temp 團隊批次審核</h3>
-<ul>
-<li>將產出的 Excel 總表交由 Temp 團隊進行標記。</li>
-<li>Temp 於「【人工】判斷」欄位填寫代碼：</li>
-<li><code>v</code>：同意系統目前之建議。</li>
-<li><code>1</code> / <code>2</code> / <code>3</code>：從候選清單中挑選第 1、2 或 3 個品牌。</li>
-<li><code>新增品牌名稱</code>：若為新品牌，直接填入正確名稱。</li>
-<li><code>No brand</code>：確認該項目為無品牌或周邊配件。</li>
-<li><code>留空</code>：暫不處理，系統維持原建議。</li>
-<li><code>-</code>：清除先前的判斷。</li>
-</ul>
-<h3 id="_8">步驟五：收回審核檔並一鍵回灌規則庫</h3>
-<ul>
-<li>收回 Temp 填寫後的 Excel 檔案。</li>
-<li>執行指令：<code>py run.py bundle-import</code></li>
-<li>系統自動將所有審核紀錄寫入 SQLite 規則庫（<code>brand_rules.db</code>），並自動提煉中英別名。</li>
-</ul>
-<h3 id="_9">步驟六：全站自動套用並產出結果總表</h3>
-<ul>
-<li>執行指令：<code>py run.py tag --all</code></li>
-<li>規則庫中的決策立即向全站 22 個品類廣播生效，自動產出品號層級之結果明細檔（<code>output/momo/&lt;品類&gt;_result.xlsx</code>）。</li>
-</ul>
-<hr />
-<h2 id="5">5. 決策路徑與規則對照表</h2>
-<p>點擊下方區塊可展開檢視各層級之具體判定條件與實例說明：</p>
-<details class="info" open="open">
-<summary>層級一：品牌欄有填之判斷路徑 (1.1 ～ 1.7)</summary>
+<h3 id="temp">步驟二：Temp 團隊標記指引</h3>
+<p>Temp 審核人員僅需在表格「<strong>【人工】判斷</strong>」欄位填入簡易代碼：</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">路徑代碼</th>
-<th style="text-align: left;">判斷情況</th>
-<th style="text-align: center;">判定結果</th>
-<th style="text-align: center;">信心度</th>
-<th style="text-align: left;">典型範例說明</th>
+<th style="text-align: center;">輸入代碼</th>
+<th style="text-align: left;">代表意涵</th>
+<th style="text-align: left;">系統後續動作</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>1.1</strong></td>
-<td style="text-align: left;">品牌欄文字標示無品牌</td>
-<td style="text-align: center;">無品牌</td>
-<td style="text-align: center;">97</td>
-<td style="text-align: left;">品牌欄填寫「無品牌」、「其他」、「OEM」</td>
+<td style="text-align: center;"><code>v</code></td>
+<td style="text-align: left;">同意系統目前的建議</td>
+<td style="text-align: left;">將系統原建議之品牌直接固化為永久規則。</td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>1.2</strong></td>
-<td style="text-align: left;">品牌欄文字為相容描述</td>
-<td style="text-align: center;">無品牌</td>
-<td style="text-align: center;">90</td>
-<td style="text-align: left;">品牌欄填寫「適用 iPhone 充電線」</td>
+<td style="text-align: center;"><code>1</code> / <code>2</code> / <code>3</code></td>
+<td style="text-align: left;">挑選候選清單中的第 1、2 或 3 個品牌</td>
+<td style="text-align: left;">指定對應候選品牌並指派正式 <code>brand_id</code>。</td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>1.3</strong></td>
-<td style="text-align: left;">品牌庫完全相符（含子品牌優先）</td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">96</td>
-<td style="text-align: left;">「DHC」完全相符；「Apple iPhone」取子品牌 <code>iphone</code></td>
+<td style="text-align: center;"><code>新品牌名稱</code></td>
+<td style="text-align: left;">確認為品牌庫未收錄之合法新品牌</td>
+<td style="text-align: left;">將該自訂名稱納入建議新增品牌清單。</td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>1.4</strong></td>
-<td style="text-align: left;">品牌庫有多筆重複，依業績取主要品牌</td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">90</td>
-<td style="text-align: left;">品牌庫同時有 <code>LUX</code> 與 <code>Lux</code>，取銷量最高之主要 ID</td>
+<td style="text-align: center;"><code>No brand</code></td>
+<td style="text-align: left;">確認為白牌、規格描述或相容周邊</td>
+<td style="text-align: left;">標記為無品牌並記錄相容原因。</td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>1.5</strong></td>
-<td style="text-align: left;">多個不同品牌同時相符，需人工確認</td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">39</td>
-<td style="text-align: left;">品牌欄填「日本」，同時命中多個品牌，同分送審</td>
+<td style="text-align: center;"><em>(留空)</em></td>
+<td style="text-align: left;">暫不確定 / 暫不處理</td>
+<td style="text-align: left;">系統維持原狀態，不作任何變更。</td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>1.6</strong></td>
-<td style="text-align: left;">有品牌特徵，但現有品牌庫查無</td>
-<td style="text-align: center;">建議新增品牌</td>
-<td style="text-align: center;">82</td>
-<td style="text-align: left;">「茉家」、「AHOYE」，字面具品牌特徵但庫內無</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>1.7</strong></td>
-<td style="text-align: left;">品牌欄內容為規格或品類描述詞</td>
-<td style="text-align: center;">無品牌</td>
-<td style="text-align: center;">80</td>
-<td style="text-align: left;">品牌欄填寫「收納用品」、「特價出清」</td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: left;">清除先前的判定</td>
+<td style="text-align: left;">取消該字串過去之記錄，退回演算法初判。</td>
 </tr>
 </tbody>
 </table>
-</details>
-<details class="info" open="open">
-<summary>層級二：品牌欄空白之判斷路徑 (2.1 ～ 2.5)</summary>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">路徑代碼</th>
-<th style="text-align: left;">判斷情況</th>
-<th style="text-align: center;">判定結果</th>
-<th style="text-align: center;">信心度</th>
-<th style="text-align: left;">典型範例說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>2.1</strong></td>
-<td style="text-align: left;">商品為配件或相容周邊</td>
-<td style="text-align: center;">無品牌</td>
-<td style="text-align: center;">88</td>
-<td style="text-align: left;">標題「iPhone 15 鋼化保護貼」，本體非蘋果商品</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2.2</strong></td>
-<td style="text-align: left;">商品名稱開頭【】命中品牌庫</td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">86</td>
-<td style="text-align: left;">商品名稱為「【Innisfree】綠茶保濕精華」</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2.3</strong></td>
-<td style="text-align: left;">商品名稱開頭【】為新品牌</td>
-<td style="text-align: center;">建議新增品牌</td>
-<td style="text-align: center;">72</td>
-<td style="text-align: left;">商品名稱為「【MEIDIAN】固體面膜棒」，庫中查無</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2.4</strong></td>
-<td style="text-align: left;">由商品標題內文中段比對到品牌</td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">52</td>
-<td style="text-align: left;">標題內文中出現特定長字串品牌名稱</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2.5</strong></td>
-<td style="text-align: left;">標題與內文皆無可信品牌資訊</td>
-<td style="text-align: center;">無品牌</td>
-<td style="text-align: center;">85</td>
-<td style="text-align: left;">標題為純描述性商品名（如「加厚純棉毛巾」）</td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="info" open="open">
-<summary>層級三：歷史審核記憶與人工覆蓋機制 (3.1 ～ 3.2)</summary>
-<blockquote>
-<p><strong>特別說明（為什麼有這兩條規則？業務或主管需要事先手動建檔嗎？）</strong><br />
-<strong>不需要事先手動建檔。</strong> 系統在初次運作時，此處記錄為 0 筆。這兩條規則是系統的<strong>「學習與記憶容器」</strong>：當 Temp 團隊或業務人員把審核 Excel 填妥並回灌系統後，系統會自動將確認過的品牌對應永久寫入資料庫（<code>brand_rules.db</code>）。日後全站若再次出現相同的品牌字串，系統就會依 3.1 優先自動沿用，免去重複人工審核。</p>
-</blockquote>
+<h3 id="_3">步驟三：收回總表一鍵回灌規則庫</h3>
 <ul>
-<li><strong>3.1 套用歷史審核品牌字串（全站共用）</strong>：
-  先前已在審核表中確認過的品牌字串，全站 22 個品類若再次出現，系統直接沿用該判定結果（信心度 100 分，最高優先權）。</li>
-<li><strong>3.2 套用單一品號例外覆蓋（單品專屬）</strong>：
-  僅用於極少數「字串本身不能改，但某特定單一品號需例外指定品牌」之特殊情況（信心度 100 分）。</li>
+<li><strong>執行指令</strong>：<code>py run.py bundle-import</code></li>
+<li>系統讀取填寫完畢之 Excel，自動將確認之決策寫入 SQLite 規則庫（<code>brand_rules.db</code>）之 <code>decision_log</code>，並自動學習提煉有效中英別名。</li>
 </ul>
-</details>
+<h3 id="_4">步驟四：規則庫自動記憶並全站廣播</h3>
+<ul>
+<li><strong>執行指令</strong>：<code>py run.py tag --all</code></li>
+<li>規則庫中的確認結果即刻向全站 22 個品類廣播生效，自動產出最新之商品結果明細檔（<code>output/momo/&lt;品類&gt;_result.xlsx</code>）。日後即使競網載入新資料批次，已審核過的字串亦永不需重複審核。</li>
+</ul>
 <hr />
-<h2 id="6">6. 信心度指標與審核建議</h2>
-<p>系統產出的每一筆對應結果皆附帶 <strong>0～100 分之信心度</strong>，作為人工檢核之優先順序依據：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">信心度區間</th>
-<th style="text-align: center;">確定程度</th>
-<th style="text-align: center;">商品占比</th>
-<th style="text-align: left;">建議作業方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>90～100 分</strong></td>
-<td style="text-align: center;">高度確定</td>
-<td style="text-align: center;">約 75.5%</td>
-<td style="text-align: left;">系統判定明確無爭議，可直接採用，無須耗費人力審核。</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>75～89 分</strong></td>
-<td style="text-align: center;">大致可信</td>
-<td style="text-align: center;">約 18.4%</td>
-<td style="text-align: left;">結果具可信度。系統於工作簿中隨機標註「★」，每品類僅需抽檢約 30 筆即可確認品質。</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>0～74 分</strong></td>
-<td style="text-align: center;">需人工確認</td>
-<td style="text-align: center;">約 6.1%</td>
-<td style="text-align: left;">包含全新品牌、多品牌同分歧義或短縮寫。系統將其集中於審核工作簿最上方，由 Temp 團隊優先確認。</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="7">7. 系統架構、技術實作與資料結構</h2>
-<h3 id="71">7.1 系統分層架構</h3>
-<p>系統採用模組化設計，各層職責分離，確保維護性與可擴展性：</p>
+<h2 id="6">6. 系統架構與技術可靠性保障</h2>
+<h3 id="61">6.1 五層模組化架構設計</h3>
+<p>為確保系統穩定性與高吞吐量，工程設計採五層分層架構：</p>
 <ol>
-<li><strong>資料來源層 (<code>brandtag/source.py</code>)</strong>：負責讀取競網 raw SQLite，並自動快取為品號唯一資料表。</li>
-<li><strong>文字前處理層 (<code>brandtag/text.py</code>)</strong>：執行字符正規化、法人組織別剝離、中英文拆分。</li>
-<li><strong>比對與索引引擎 (<code>brandtag/index.py</code>, <code>engine.py</code>)</strong>：維護雙向倒排索引，計算子品牌跨度與信心度。</li>
-<li><strong>規則儲存層 (<code>brandtag/store.py</code>)</strong>：使用 SQLite 實作 Append-Only 決策日誌與狀態重算。</li>
-<li><strong>審核與整合層 (<code>brandtag/bundle.py</code>, <code>review.py</code>)</strong>：負責產生多品類審核檔及全站總表。</li>
+<li><strong>資料來源層 (<code>brandtag/source.py</code>)</strong>：高效讀取競網 raw SQLite，並自動快取品號唯一清單，減少 I/O 損耗。</li>
+<li><strong>文字前處理層 (<code>brandtag/text.py</code>)</strong>：全形轉半形、大小寫標準化、法人組織別剝離（生技、實業、股份有限公司等）。</li>
+<li><strong>比對與索引引擎 (<code>brandtag/index.py</code>, <code>engine.py</code>)</strong>：維護中英雙向倒排索引，計算子品牌跨度與量化信心度。</li>
+<li><strong>規則儲存層 (<code>brandtag/store.py</code>)</strong>：基於 SQLite 實作 Append-Only 決策歷史日誌，支援狀態重算與自動回滾。</li>
+<li><strong>審核與整合層 (<code>brandtag/bundle.py</code>, <code>review.py</code>)</strong>：負責全站審核總表打包、防呆校驗與自動回灌。</li>
 </ol>
 <hr />
-<h3 id="72">7.2 核心比對技術與演算法</h3>
-<ol>
-<li><strong>子品牌位移跨度分析（Span Offset Analysis）</strong>：
-   電商命名慣例普遍為 <code>[母品牌] [子品牌]</code>。系統在檢索到多個候選時，比對候選在原始字串中的起始位移（Offset），優先選取位置靠後之子品牌（如 <code>Apple</code> 位於 0，<code>iPhone</code> 位於 6，系統選取 <code>iPhone</code>）。</li>
-<li><strong>跨類別部分分詞懲罰</strong>：
-   當候選品牌所屬品類與商品所屬品類不一致，且僅為分詞命中（非完全相符）時，系統施加 30 分之懲罰權重並直接否決，杜絕如書籍漫畫《KING GOLF》誤配汽配零件之情形。</li>
-<li><strong>Levenshtein 拼字距離容錯</strong>：
-   針對長英文品牌（長度 ≥ 5），允許 1～2 個字元之拼寫差異容錯，同時設定 88% 之嚴格門檻，避免誤命中短單字。</li>
-</ol>
-<hr />
-<h3 id="73-ai">7.3 外部查證機制（AI 輔助商標官網查證）</h3>
+<h3 id="62">6.2 關鍵演算法與可靠性機制</h3>
 <ul>
-<li><strong>程式本體離線運行</strong>：Python 比對引擎完全在本地離線運算，不依賴任何外部網路，速度快且穩定。</li>
-<li><strong>AI 輔助查證時機</strong>：在人機協調分析過程中，針對高疑義縮寫（如 <code>GB</code>、<code>HH</code>）由 AI 連線查詢經濟部智慧財產局商標檢索系統與官網背景，確認真實中英對照後，整理成靜態對照表。</li>
+<li><strong>子品牌位移跨度分析 (Span Offset Analysis)</strong>：
+  電商命名慣例普遍為 <code>[母品牌] [子品牌]</code>（如 <code>Apple iPhone</code>、<code>ASUS ROG</code>）。系統在命中多個候選時，比對各候選在原始字串中的起始位移（Offset），優先選取位置靠後之子品牌，確保精準落地至具體顆粒度。</li>
+<li><strong>跨品類部分命中懲罰</strong>：
+  當候選品牌所屬品類與商品所屬品類不同，且僅為分詞局部命中時，系統自動施加懲罰權重並直接否決，徹底防範如書籍漫畫誤對應五金汽配之情形。</li>
+<li><strong>拼寫容錯與嚴格門檻</strong>：
+  針對長度 ≥ 5 之英文品牌，允許 1～2 字元之 Levenshtein 編輯距離容錯，同時設立 88% 相符門檻，兼顧打字疏漏修正與防偽精度。</li>
+<li><strong>本地離線運算保障</strong>：
+  主程式運算 100% 於本地端離線執行，不依賴外部即時連線，具備極高之運算吞吐量（54 萬品號僅需數分鐘）與資料安全性。</li>
 </ul>
 <hr />
-<h3 id="74">7.4 規則資料庫與對照表實例節錄</h3>
-<p>所有規則皆獨立於原始商品資料儲存，歷程永不丟失：</p>
-<h4 id="1-decision_log-in-brand_rulesdb">1. 人工決策歷程表（<code>decision_log</code> in <code>brand_rules.db</code>）</h4>
-<p>記錄每一次人工確認的操作者、時間、原系統建議與修改值（只增不減）：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">log_id</th>
-<th style="text-align: center;">記錄時間</th>
-<th style="text-align: center;">操作者</th>
-<th style="text-align: center;">品牌字串</th>
-<th style="text-align: center;">最終判定結果</th>
-<th style="text-align: center;">對應 brand_id</th>
-<th style="text-align: left;">備註說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">#101</td>
-<td style="text-align: center;">2026-09-20 14:22</td>
-<td style="text-align: center;">UserA</td>
-<td style="text-align: center;"><code>B:dhc</code></td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">1100123</td>
-<td style="text-align: left;">同意系統原建議</td>
-</tr>
-<tr>
-<td style="text-align: center;">#102</td>
-<td style="text-align: center;">2026-09-20 15:05</td>
-<td style="text-align: center;">UserA</td>
-<td style="text-align: center;"><code>B:gb 綠鐘</code></td>
-<td style="text-align: center;">品牌庫品牌</td>
-<td style="text-align: center;">1124530</td>
-<td style="text-align: left;">經查為 GREEN BELL，非母嬰 gb</td>
-</tr>
-<tr>
-<td style="text-align: center;">#103</td>
-<td style="text-align: center;">2026-09-20 16:30</td>
-<td style="text-align: center;">Temp1</td>
-<td style="text-align: center;"><code>T:iphone保護貼</code></td>
-<td style="text-align: center;">No brand</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: left;">配件相容品，非原廠品牌</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-curated_aliasescsv">2. 已查證中英別名表（<a href="file:///c:/Users/SCTTW0989/Desktop/brand_tagging/curated_aliases.csv"><code>curated_aliases.csv</code></a>）</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>中文品牌名,brand_id,英文官方名,查證來源與備註
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>綠鐘,1124530,GREEN BELL,日本百年鍛造美甲工具品牌，非好孩子推車 gb
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>理膚寶水,1100456,La Roche-Posay,台灣萊雅代理之醫美保養品牌
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>草本新淨界,1111148,Herb &amp; Health,女性私密護理品牌 HH
-</code></pre></div>
-<h4 id="3-curated_entity_linkscsv">3. 已查證同實體品牌表（<a href="file:///c:/Users/SCTTW0989/Desktop/brand_tagging/curated_entity_links.csv"><code>curated_entity_links.csv</code></a>）</h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>brand_id_a,brand_id_b,品牌名稱,備註說明
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>1120001,1111148,H&amp;H ↔ Herb &amp; Health,經查為同一實體，依累積銷量自動收斂至 1111148
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>1104521,1104522,LUX ↔ Lux 麗仕,大小寫重複建檔，自動收斂至主要 ID
-</code></pre></div>
-<hr />
-<h2 id="8-faq">8. 常見問題說明 (FAQ)</h2>
-<p><strong>Q1：為什麼同一商品在不同品類時，比對結果可能不同？</strong></p>
+<h2 id="7-stakeholder-faq">7. 利害關係人常見問答 (Stakeholder FAQ)</h2>
+<p>針對外部主管、品類負責人、採購經理與資料治理團隊常提出之業務疑問，說明如下：</p>
+<p><strong>Q1：副廠配件或相容周邊（如 iPhone 保護貼、Switch 副廠手把），會不會被系統誤判為原廠品牌？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：為避免跨領域誤判，系統嚴格遵守品類邊界。例如同樣出現「PUMA」，在運動品類會直接對應運動品牌；但若在其他五金品類出現相同字串，系統不會自動套用運動品牌，以確保資料正確。</p>
+<p><strong>說明</strong>：不會。系統在軌道 A（1.2）與軌道 B（2.1）均設置高優先級之周邊配件與相容詞檢驗機制。凡標題或品牌欄包含「保護貼」、「適用」、「副廠」、「替換頭」、「支架」等配件特徵詞者，系統皆判定為相容周邊，<strong>一律歸入無品牌（No brand）</strong>，絕不污染原廠 Apple 或 Nintendo 品牌數據。</p>
 </blockquote>
-<p><strong>Q2：人工標記時如果留空，原本審核過的資料會被清掉嗎？</strong></p>
+<p><strong>Q2：如果同一個品牌名稱出現在不同品類（如運動用品 vs 3C 電腦周邊），系統會不會誤配？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：不會。「留空」代表維持現狀，系統會繼續套用先前的判定。若需正式取消先前的判斷，需在該格輸入「<code>-</code>」。</p>
+<p><strong>說明</strong>：不會。系統以商品所屬之一級品類作為隔離邊界。比對時，若候選品牌在該品類無關聯，且非 100% 完全相符時，系統會啟動「跨品類懲罰」直接否決比對，杜絕跨領域誤判。</p>
 </blockquote>
-<p><strong>Q3：競網日後更新資料批次時，之前審核過的成果需要重做嗎？</strong></p>
+<p><strong>Q3：母品牌與子品牌（如 Apple 與 iPhone、ASUS 與 ROG）同時出現時，判斷準則為何？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：不需要。所有審核過的品牌字串皆已儲存在資料庫中。重新執行新資料時，已審過的字串會自動套用（節點 3.1），只有未曾見過的新字串才會列入待審清單。</p>
+<p><strong>說明</strong>：系統貫徹「最具體子品牌優先」原則。演算法會透過位移跨度分析確認兩者從屬關係，優先指派子品牌 ID（如 <code>iphone</code>、<code>ROG</code>），使銷售與庫存分析具備更細緻之顆粒度；若該子品牌尚未收錄於品牌庫，則依現有資料邊界歸入母品牌。</p>
 </blockquote>
-<p><strong>Q4：為什麼決策階層圖的第一優先是人工規則？但我先前沒有手動建過規則？</strong></p>
+<p><strong>Q4：現有品牌庫尚未收錄的新興品牌，系統會如何處理？會不會造成資料污染？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：3.1 與 3.2 是系統的「自動回灌記憶機制」，不是要求人員手動逐筆建檔。在專案尚未回灌任何審核表前，此庫記錄為 0 筆，系統會自動順暢進入第二、第三優先由演算法自動比對。一旦 Temp 團隊的審核表回灌後，系統就會將確認過之字串以此規則優先沿用，確保人工審定的結果絕不被演算法推翻。</p>
+<p><strong>說明</strong>：不會造成污染。凡符合合法商標特徵但庫內無對應代碼者，系統會獨立標記為 <span class="badge badge-new">TYPE_NEW</span>（建議新增品牌），並保留其原始名稱，集中彙整於新增品牌清單，由品牌庫管理者審核後正式建檔，絕不隨意指派現有品牌 ID。</p>
 </blockquote>
-<p><strong>Q5：系統是否有依賴外部網路連線？</strong></p>
+<p><strong>Q5：為什麼審核作業採用「全站單一 Excel 總表」，而不是各品類分散審核？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：主程式與 22 個品類之比對運算完全在本地端離線執行，確保速度與穩定性。僅在開發與規則調優階段，針對少數極具爭議的英文縮寫，由專案團隊輔助查詢智財局商標公報與官網，並將確認後之結果固化為靜態對照檔。</p>
+<p><strong>說明</strong>：全站 22 個品類中，有大量跨品類共用之品牌字串（例如美甲工具、通用清潔品牌等）。若依品類分散審核，不同團隊會重複審核相同品牌，且可能造成判定標準不一致。透過 <code>bundle-export</code> 進行全站去重，將審核量大幅壓縮至 1 萬筆，Temp 審核一次即可向全站 22 品類廣播生效，效率提升數倍。</p>
+</blockquote>
+<p><strong>Q6：人工與 Temp 審核過的結果，未來更新競網商品批次時需要重做嗎？</strong></p>
+<blockquote>
+<p><strong>說明</strong>：不需要。所有經確認的決策皆永久保存於 SQLite 規則庫中。當未來更新商品批次或匯入新商品時，系統第一優先自動沿用歷史決策（路徑 3.1），只有從未見過的嶄新品牌字串才會列入下一期待審清單。</p>
+</blockquote>
+<p><strong>Q7：低信心度（0～74分）的商品主要是哪些情況？如何確保這部分資料的最終品質？</strong></p>
+<blockquote>
+<p><strong>說明</strong>：低信心度項目主要集中在「全新未知品牌」、「多個品牌同分歧義（如單純填寫國家名）」以及「極短英文字母縮寫（如 GB、HH）」。系統針對此類項目採保守策略，強制標記為待審並集中於審核總表最上方，確保所有低信心度資料均有專人確認後方才定案。</p>
 </blockquote>
 
 
@@ -1761,7 +1792,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u62f7\u8c9d", "clipboard.copy": "\u62f7\u8c9d", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u627e\u5230\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u689d\u4ef6\u7684\u7d50\u679c", "search.result.placeholder": "\u9375\u5165\u4ee5\u958b\u59cb\u6aa2\u7d22", "search.result.term.missing": "\u7f3a\u5931", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
