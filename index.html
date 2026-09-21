@@ -322,7 +322,7 @@
   <a href="#12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 三大不變原則
+        1.2 原則
       
     </span>
   </a>
@@ -478,7 +478,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟一：一鍵打包產出全站待審總表
+        步驟一：一鍵打包產出全站待審總表（含真實商品品名與網址）
       
     </span>
   </a>
@@ -563,10 +563,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-stakeholder-faq" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 利害關係人常見問答 (Stakeholder FAQ)
+        7. 常見問答
       
     </span>
   </a>
@@ -634,7 +634,7 @@
   <a href="#12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 三大不變原則
+        1.2 原則
       
     </span>
   </a>
@@ -790,7 +790,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟一：一鍵打包產出全站待審總表
+        步驟一：一鍵打包產出全站待審總表（含真實商品品名與網址）
       
     </span>
   </a>
@@ -875,10 +875,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-stakeholder-faq" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 利害關係人常見問答 (Stakeholder FAQ)
+        7. 常見問答
       
     </span>
   </a>
@@ -911,8 +911,8 @@
 <h3 id="11">1.1 業務痛點與專案目標</h3>
 <p>電商競網（momo）商品中，品牌欄位填寫格式極度混亂，常見「中英並列」、「母子品牌重疊」、「型號規格混入品牌欄」、「空白未填」或「副廠周邊配件借用原廠名稱」等現象。</p>
 <p>本專案之核心目標在於建立一套<strong>高精準度、可重複執行、具備自學習記憶之品牌標準化對應系統</strong>，將競網商品全數標準化對應至既有之正式品牌庫，產出一致、乾淨且去重的商品品牌主檔。</p>
-<h3 id="12">1.2 三大不變原則</h3>
-<p>為確保跨品類、跨批次之資料標準完全一致，系統全流程嚴格貫徹以下三大原則：</p>
+<h3 id="12">1.2 原則</h3>
+<p>為確保跨品類、跨批次之資料標準完全一致，系統全流程嚴格貫徹以下三原則：</p>
 <ol>
 <li><strong>最具體子品牌優先</strong></li>
 <li>不論 3C 科技、美妝或居家生活，全品類標準保持一致：<strong>當母品牌與子品牌同時存在於品牌庫時，優先歸入最具體的子品牌</strong>。<ul>
@@ -1624,11 +1624,14 @@
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                                      ▼
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>[步驟四: 規則廣播全站生效] ──────► 全站 22 品類結果即刻自動更新
 </code></pre></div>
-<h3 id="_2">步驟一：一鍵打包產出全站待審總表</h3>
+<h3 id="_2">步驟一：一鍵打包產出全站待審總表（含真實商品品名與網址）</h3>
 <ul>
 <li><strong>執行指令</strong>：<code>py run.py bundle-export</code></li>
 <li><strong>產出檔案</strong>：<code>review/momo/_momo_全站審核總表_Temp用.xlsx</code></li>
-<li><strong>設計特色</strong>：系統自動跨 22 個品類，將相同之待審字串<strong>去重合併為單一工作表</strong>，並自動凍結標題列、標註黃色填寫區，避免多檔案分散傳遞。</li>
+<li><strong>審核輔助設計（極大化人工作業效率）</strong>：</li>
+<li><strong>跨品類去重收斂</strong>：自動跨 22 個品類，將相同之待審字串去重合併為單一工作表，審核一次即可向全站廣播生效。</li>
+<li><strong>內嵌真實商品品名與網址</strong>：每一筆品牌字串均附帶<strong>「範例商品名稱」</strong>與<strong>「範例商品網址（可直接點擊開啟 momo 商品頁）」</strong>，審核人員若有疑義，點擊連結即可直接檢視真實商品圖片與描述，大幅降低判斷失誤。</li>
+<li><strong>決策動線與視窗凍結</strong>：由左至右依序呈現「品牌欄 ➔ 範例品名與網址 ➔ 系統建議與候選 ➔ 【人工】判斷黃色填寫區」，並凍結標題列與前 6 欄，確保對照時舒適順手。</li>
 </ul>
 <h3 id="temp">步驟二：Temp 團隊標記指引</h3>
 <p>Temp 審核人員僅需在表格「<strong>【人工】判斷</strong>」欄位填入簡易代碼：</p>
@@ -1707,8 +1710,7 @@
   主程式運算 100% 於本地端離線執行，不依賴外部即時連線，具備極高之運算吞吐量（54 萬品號僅需數分鐘）與資料安全性。</li>
 </ul>
 <hr />
-<h2 id="7-stakeholder-faq">7. 利害關係人常見問答 (Stakeholder FAQ)</h2>
-<p>針對外部主管、品類負責人、採購經理與資料治理團隊常提出之業務疑問，說明如下：</p>
+<h2 id="7">7. 常見問答</h2>
 <p><strong>Q1：副廠配件或相容周邊（如 iPhone 保護貼、Switch 副廠手把），會不會被系統誤判為原廠品牌？</strong></p>
 <blockquote>
 <p><strong>說明</strong>：不會。系統在軌道 A（1.2）與軌道 B（2.1）均設置高優先級之周邊配件與相容詞檢驗機制。凡標題或品牌欄包含「保護貼」、「適用」、「副廠」、「替換頭」、「支架」等配件特徵詞者，系統皆判定為相容周邊，<strong>一律歸入無品牌（No brand）</strong>，絕不污染原廠 Apple 或 Nintendo 品牌數據。</p>
