@@ -190,20 +190,41 @@ def tag(raw_brand, title, cat, bi: BrandIndex, cat_check: bool) -> dict:
         return result(bi, "1.7", BASE["1.7"], f"品牌欄內容不是品牌：{why}", ranked, reason=R_STORE)
 
     # ══════════════════════════════════════════════ 2. 品牌欄空白
-    if COMPAT_RE.search(t) or ACCESSORY_RE.search(t):
-        return result(bi, "2.1", BASE["2.1"], "商品為配件/相容品，標題中的品牌為其相容對象", reason=R_COMPAT)
-
+    # 先看商品名稱開頭【】：若有明確獨立第三方品牌，優先採認（例：【ipega】副廠Switch配件、【犀牛盾】iPhone保護殼）
     if bracket:
+        norm_br = normalize(bracket)
+        if norm_br in NOBRAND_WORDS or COMPAT_RE.search(bracket):
+            return result(bi, "2.1", BASE["2.1"], f"商品名稱【】標示為相容描述或無品牌（{bracket}）", reason=R_COMPAT)
+
         ok, why = looks_like_brand(bracket)
-        hit, ranked = _best(bi.match(bracket), bi, normalize(bracket), cat, cat_check, scale=0.95,
+        hit, ranked = _best(bi.match(bracket), bi, norm_br, cat, cat_check, scale=0.95,
                             extra_note="（依商品名稱【】判斷）")
+
+        # 檢驗【】是否為「相容主機名稱」：例如【Apple】iPhone 15 副廠鋼化膜，【】內填的是主機名但標題宣告為副廠/相容
+        is_compat_context = bool(COMPAT_RE.search(t))
+        host_platforms = {"apple", "iphone", "ipad", "macbook", "airpods", "applewatch",
+                          "samsung", "galaxy", "switch", "nintendo", "pixel",
+                          "playstation", "ps4", "ps5", "xbox", "sony", "dyson",
+                          "蘋果", "三星", "任天堂", "小米"}
+        is_host_brand = (norm_br in host_platforms) or any(hp in norm_br for hp in ("iphone", "ipad", "switch", "macbook", "galaxy", "airpods"))
+
         if hit:
             bid, path, conf, note, ranked = hit
+            # 若【】是主機平台且標題明確標示副廠/相容，則該主機品牌僅為相容對象，非商品製造商
+            if is_compat_context and is_host_brand:
+                return result(bi, "2.1", BASE["2.1"], f"商品為相容配件，【】中之品牌（{bracket}）為相容主機而非製造商", ranked, reason=R_COMPAT)
             return result(bi, "2.2", conf, note, ranked, bid=bid)
+
         if ok:
+            if is_compat_context and is_host_brand:
+                return result(bi, "2.1", BASE["2.1"], f"商品為相容配件，【】中之描述（{bracket}）為相容主機而非製造商", ranked, reason=R_COMPAT)
             return result(bi, "2.3", BASE["2.3"], "商品名稱【】看起來是品牌，但品牌庫查無", ranked,
                           new_name=bracket)
-        # 【】不是品牌 → 落到 2.4 繼續看標題內文
+        # 【】不是品牌（純規格或促銷描述，如【台灣製造防窺片】） → 往下檢查是否為相容配件或掃描內文
+
+    # 【】無獨立品牌時，若標題屬於相容周邊或配件（如 iPhone 15 鋼化膜） → 歸入 No brand (2.1)
+    if COMPAT_RE.search(t) or ACCESSORY_RE.search(t):
+        return result(bi, "2.1", BASE["2.1"], "商品為配件/相容品且無獨立品牌，標題中的品牌為其相容對象", reason=R_COMPAT)
 
     sc = {b: v for b, v in bi.scan_title(t).items() if _distinctive(v[1])}
     if sc:
