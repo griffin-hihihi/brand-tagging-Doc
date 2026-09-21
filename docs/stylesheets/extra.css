@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Custom Enterprise Consulting UI Stylesheet for MkDocs Material
+   Refined typography, compact data cards, elegant badges, sleek tables.
+   ========================================================================== */
+
+:root {
+  --md-primary-fg-color: #1e293b;
+  --md-primary-fg-color--light: #334155;
+  --md-primary-fg-color--dark: #0f172a;
+  --md-accent-fg-color: #4f46e5;
+  --md-text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --md-code-font: "JetBrains Mono", Consolas, "SFMono-Regular", Menlo, Monaco, monospace;
+}
+
+/* 全域字體縮放與行距優化（解決預設字體過大、版面鬆散問題） */
+.md-typeset {
+  font-size: 0.76rem;
+  line-height: 1.65;
+  color: #334155;
+}
+
+/* 標題階層視覺緊湊化 */
+.md-typeset h1 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.md-typeset h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #1e293b;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.md-typeset h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.md-typeset h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+/* 專業卡片式表格設計 */
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  margin: 1rem 0 1.5rem 0;
+  font-size: 0.74rem;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  padding: 8px 12px;
+  border-bottom: 1px solid #cbd5e1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: none;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: #fcfdfe;
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background-color: #f1f5f9;
+}
+
+/* 狀態標籤徽章 (Badges) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.badge-pool {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-new {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-nb {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.badge-score {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  font-family: var(--md-code-font);
+  font-weight: 700;
+}
+
+/* 摺疊面板 (Details / Collapsible) 優化 */
+.md-typeset details {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  margin: 1rem 0 !important;
+  overflow: hidden;
+}
+
+.md-typeset details summary {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+}
+
+.md-typeset details[open] summary {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.md-typeset details .details__content {
+  padding: 12px 14px !important;
+}
+
+/* 引用提示區塊 (Admonition) 精緻化 */
+.md-typeset .admonition {
+  border-radius: 8px;
+  font-size: 0.74rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  margin: 1rem 0;
+}
+
+.md-typeset .admonition .admonition-title {
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 8px 12px;
+}
+
+/* 程式碼區塊精緻化 */
+.md-typeset code {
+  font-size: 0.82em;
+  padding: 2px 5px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.md-typeset pre > code {
+  border: none;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Mermaid 圖表容器精緻化 */
+.mermaid {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1.2rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: center;
+}

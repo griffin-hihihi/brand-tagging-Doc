@@ -8,25 +8,30 @@ theme:
   palette:
     # 淺色模式
     - scheme: default
-      primary: teal
+      primary: slate
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: 切換至深色模式
     # 深色模式
     - scheme: slate
-      primary: teal
+      primary: slate
       accent: indigo
       toggle:
         icon: material/brightness-4
         name: 切換至淺色模式
+  font:
+    text: Inter
+    code: JetBrains Mono
   features:
     - navigation.top
-    - navigation.instant
     - navigation.tracking
     - search.suggest
     - search.highlight
     - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
@@ -46,4 +51,3 @@ markdown_extensions:
 
 nav:
   - 判斷規則與流程: index.md
-
