@@ -169,6 +169,21 @@ def record(con, entries, src_file: str, site: str, level1: str) -> tuple[int, in
     """
     cur_b = current(con, "brand")
     cur_i = current(con, "item", site)
+    # 在任何寫入之前驗證整批，避免舊的分品類審核檔覆蓋剛匯入的 Temp 總表。
+    seen = {}
+    for e in entries:
+        scope, key = e["scope"], e["rule_key"]
+        fp = fingerprint(scope, key, e["decision"], e.get("brand_id"), e.get("brand_name"),
+                         e.get("nobrand_reason"), e.get("note"))
+        if (scope, key) in seen and seen[scope, key] != fp:
+            raise ValueError(f"{key} 在同一批有互相衝突的判斷；整批未匯入")
+        seen[scope, key] = fp
+        prev = (cur_b if scope == "brand" else cur_i).get(key)
+        if prev and "expected_log_id" in e and e["expected_log_id"] != prev["log_id"]:
+            prev_fp = fingerprint(scope, key, prev["decision"], prev["brand_id"], prev["brand_name"],
+                                  prev["nobrand_reason"], prev["note"])
+            if fp != prev_fp:
+                raise ValueError(f"{key} 已有更新的人工判斷；請保留填寫內容、更新審核表後重填，整批未匯入")
     who, ts = actor(), now()
     n = agreed = 0
     for e in entries:
@@ -193,6 +208,13 @@ def record(con, entries, src_file: str, site: str, level1: str) -> tuple[int, in
              e.get("sampled", 0), e.get("goods", 0), e.get("agree")))
         n += 1
         agreed += int(bool(e.get("agree")))
+        state = cur_b if scope == "brand" else cur_i
+        if e["decision"] == REVOKED:
+            state.pop(key, None)
+        else:
+            state[key] = {"decision": e["decision"], "brand_id": e.get("brand_id"),
+                          "brand_name": e.get("brand_name"), "nobrand_reason": e.get("nobrand_reason"),
+                          "note": e.get("note")}
     if n:
         con.commit()
         rebuild_state(con)

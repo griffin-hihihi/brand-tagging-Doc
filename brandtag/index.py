@@ -88,6 +88,12 @@ class BrandIndex:
         self.adg = dict(zip(pool.brand_id, pool["adg"])) if "adg" in pool else {}
         self.cat = dict(zip(pool.brand_id, pool[cat_col])) if cat_col in pool else {}
         self.parts = {b: split_parts(n) for b, n in self.name.items()}
+        # 使用者確認：iPhone 是 Apple 的產品線，不是獨立品牌。
+        # 只接受明確 Apple 登錄；Apple Sidra / Apple House 等不是 Apple Inc.
+        self.apple_ids = {b for b, (full, _, _) in self.parts.items()
+                          if full in {"apple", "apple蘋果", "蘋果apple", "iphoneapple", "appleiphone"}}
+        self.apple_product_ids = {b for b, (full, _, _) in self.parts.items()
+                                  if re.fullmatch(r"iphone(?:\d+[a-z0-9]*)?", full)}
         self.group = {b: p[0] for b, p in self.parts.items()}
         self.surface = defaultdict(set)
         for b, n in self.name.items():
@@ -314,11 +320,24 @@ class BrandIndex:
                 # 競網僅 ≤2 字中文且無英文名，而品牌庫此品牌另有 ≥4 字英文名（例如「和平」vs「WAHEI FREIZ 和平」）
                 v[0] = min(v[0], 65)
                 v[1] = f"{v[1]}；但競網僅二字中文且無英文名，而品牌庫此品牌另有英文名「{pl}」，證據較弱"
+        return self.canonical_products(out)
+
+    def canonical_products(self, candidates):
+        """品牌實體已確認後才比較 adg；產品線 ID 不作為最終品牌。"""
+        related = (self.apple_ids | self.apple_product_ids) & candidates.keys()
+        if not related:
+            return candidates
+        out = {b: v for b, v in candidates.items() if b not in related}
+        if self.apple_ids:
+            pick = max(self.apple_ids, key=lambda b: (self.adg_of(b), -b))
+            evidence = list(max((candidates[b] for b in related), key=lambda v: v[0]))
+            evidence[1] += f"；iPhone 為產品線，Apple 同實體依 adg 取 {self.name[pick]} [{pick}]"
+            out[pick] = evidence
         return out
 
     def scan_title(self, title) -> dict:
         out = {}
-        t = normalize(title)[:80]
+        t = normalize(title)
         for i in range(len(t)):
             for j in range(i + 3, min(len(t), i + 20) + 1):
                 sub = t[i:j]
@@ -328,7 +347,7 @@ class BrandIndex:
                             src = "human" if (sub, b) in self.human else "curated" if (sub, b) in self.curated else \
                                 "auto" if (sub, b) in self.auto else "natural"
                             out[b] = [75, f"商品名稱內含「{sub}」", len(sub), src == "human", "scan", src, False]
-        return out
+        return self.canonical_products(out)
 
     def same_entity(self, b1, b2) -> bool:
         """兩個 brand_id 是否其實是同一個品牌在品牌庫中的重複登錄。

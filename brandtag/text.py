@@ -88,11 +88,12 @@ def is_bilingual(s: str) -> bool:
 
 
 def extract_bracket(title) -> str:
-    """取商品名稱開頭的【】內容，並剝掉產地前綴。"""
-    m = re.search(r"【(.*?)】", "" if blank(title) else str(title))
+    """取第一個非空的【】或 [] 內容，並剝掉產地前綴。"""
+    m = next((m for m in re.finditer(r"【([^】]*)】|\[([^\]]*)\]", "" if blank(title) else str(title))
+              if clean_raw(m.group(1) or m.group(2))), None)
     if not m:
         return ""
-    b = clean_raw(m.group(1))
+    b = clean_raw(m.group(1) or m.group(2))
     for p in ORIGIN_PREFIX:
         if b.startswith(p) and len(b) > len(p):
             b = b[len(p):]
@@ -120,10 +121,13 @@ def brand_key(raw_brand, title, item_id) -> str:
     這個 key 是全站、跨 L1 共用的 —— 在 Beauty 審過的品牌字串，Health 遇到同樣的字串直接套用。
     """
     b = normalize(clean_raw(raw_brand))
+    # 主機名在配件標題中可能只是相容對象，不能把本體的結論擴散到配件。
+    if host_brand(raw_brand or extract_bracket(title)) and ACCESSORY_RE.search(str(title or "")):
+        return "I:" + str(item_id)
     if b:
         return "B:" + b
     br = extract_bracket(title)
-    if br and not is_generic(br):
+    if br and looks_like_brand(br)[0] and not is_generic(br):
         return "T:" + normalize(br)
     return "I:" + str(item_id)
 
@@ -134,6 +138,8 @@ def brand_key(raw_brand, title, item_id) -> str:
 
 # 單獨出現時幾乎不可能是品牌的通用詞
 NOT_BRAND_WORDS = {
+    "製造", "台灣製造", "日本製造", "台灣製", "日本製", "超抗刮", "防摔專家",
+    "洗衣機過濾網", "運動相機通用", "鋼化膜", "防窺片", "抗菌", "防水", "透氣",
     "國家", "幸福", "生活", "精品", "時尚", "經典", "自然", "健康", "美麗", "快樂", "溫馨",
     "農會", "漁會", "合作社", "生產者", "小農", "產地", "批發", "零售", "量販", "賣場",
     "百貨", "超市", "商行", "商店", "專櫃", "專賣店", "直營", "代理", "進口", "外銷",
@@ -153,6 +159,15 @@ CATEGORY_WORDS = [
 SPEC_RE = re.compile(r"(\d+\s*(入|組|件|包|盒|片|支|條|個|雙|ml|ML|cc|CC|g|G|kg|KG|cm|CM|mm|吋|寸|L))"
                      r"|([0-9]{3,})")
 
+PROMO_RE = re.compile(r"買[一二三四五六七八九十\d]+送[一二三四五六七八九十\d]+|限時|特價|折扣|折價|免運|促銷|下殺|出清|任選|加購|贈品|熱銷|預購|現貨")
+
+
+def host_brand(s: str) -> bool:
+    n = normalize(s)
+    return n in {"apple", "apple蘋果", "蘋果", "samsung", "三星", "sony", "dyson",
+                 "nintendo", "任天堂", "小米", "switch", "pixel", "xbox", "ps4", "ps5"} or bool(
+        re.fullmatch(r"(?:apple)?(?:iphone|ipad|macbook|airpods|applewatch|galaxy|switch)[a-z0-9]*", n))
+
 
 def looks_like_brand(s: str) -> tuple[bool, str]:
     """判斷這串字是否像品牌名。回傳 (是否像品牌, 不像的理由)。
@@ -167,6 +182,8 @@ def looks_like_brand(s: str) -> tuple[bool, str]:
         return False, "沒有可辨識的文字"
     if n in NOT_BRAND_WORDS or raw.lower() in NOT_BRAND_WORDS:
         return False, "通用詞，非特定品牌"
+    if PROMO_RE.search(raw):
+        return False, "促銷或販售描述，非品牌證據"
     if n.isdigit():
         return False, "純數字"
     for w in CATEGORY_WORDS:

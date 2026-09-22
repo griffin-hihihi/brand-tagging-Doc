@@ -44,6 +44,8 @@ def run_l1(cfg, con, pool, l1: str, log=print, write_excel=True) -> dict:
     n_imp = n_agree = 0
     if review_path.exists():
         entries, errors = rv.collect_decisions(review_path, bi, cfg.site)
+        if errors:
+            raise ValueError("審核檔有無法匯入的判斷，已停止以保留原檔：\n" + "\n".join(errors[:30]))
         n_imp, n_agree = store.record(con, entries, review_path.name, cfg.site, l1)
         for e in errors[:30]:
             log(f"   ⚠ {e}")

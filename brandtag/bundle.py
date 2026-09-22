@@ -13,13 +13,13 @@ from .review import FREEZE_AT, parse_human
 from .text import blank, clean_raw, normalize, split_parts, brand_key
 from . import store
 
-BUNDLE_COLS = ["key", "狀態", "抽查", "出現在哪些L1", "品牌欄", "商品數",
+BUNDLE_COLS = ["key", "狀態", "抽查", "處理分類", "明確動作", "套用範圍", "跨類目衝突", "各類目建議", "出現在哪些L1", "品牌欄", "商品數",
                "範例商品名稱", "範例商品網址",
                "suggest brand name", CONF_COL,
                "shp brand name1", "shp brand name2", "shp brand name3"] \
     + HUMAN_COLS \
     + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目",
-       "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核"]
+       "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核", "規則版本"]
 
 
 def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
@@ -37,8 +37,8 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
         l1_name = f.stem
         try:
             df = pd.read_excel(f, sheet_name="審核", dtype=str)
-        except Exception:
-            continue
+        except Exception as exc:
+            raise ValueError(f"無法讀取審核檔 {f.name}，停止以免產出不完整總表") from exc
         if df.empty or "key" not in df.columns:
             continue
             
@@ -59,6 +59,8 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
                 item["_st_has_sample"] = st.startswith("②")
                 item["_st_has_done"] = st.startswith("③")
                 item["_has_sample_star"] = (samp == "★")
+                item["_outcomes"] = set()
+                item["_advice"] = []
                 merged[k] = item
             else:
                 item = merged[k]
@@ -72,6 +74,11 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
                     item["_st_has_done"] = True
                 if samp == "★":
                     item["_has_sample_star"] = True
+            item = merged[k]
+            outcome = tuple("" if blank(row.get(c)) else str(row[c]) for c in
+                            ("suggest brand name", "suggest brand id", "新增品牌名稱", "No brand原因"))
+            item["_outcomes"].add(outcome)
+            item["_advice"].append(f"{l1_name}: {outcome[0]} [{outcome[1]}] {outcome[2]}")
                     
     # 建立 key -> (title, url) 映射庫，確保 100% 每一筆品牌字串都有代表性商品名稱與點擊網址
     key_goods_map: dict[str, tuple[str, str]] = {}
@@ -95,6 +102,9 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
     for item in merged.values():
         item["出現在哪些L1"] = "、".join(sorted(item.pop("_l1s")))
         item["商品數"] = item.pop("_goods")
+        conflict = len(item.pop("_outcomes")) > 1
+        item["跨類目衝突"] = "是" if conflict else "否"
+        item["各類目建議"] = "；".join(item.pop("_advice"))
         
         k = item["key"]
         if k in key_goods_map:
@@ -118,6 +128,27 @@ def export_bundle(cfg, out_path: Path | None = None, log=print) -> Path:
             ord_val = 4
             
         item["抽查"] = "★" if item.pop("_has_sample_star") else ""
+        item["套用範圍"] = "僅此品號 " + k[2:] if k.startswith("I:") else "全站相同 key；不同商品品牌須改用單品覆蓋"
+        if conflict:
+            item["狀態"], ord_val = ST_PENDING, 1
+            item["處理分類"] = "A 跨類目衝突／主管處理"
+            item["明確動作"] = "Temp 查各類目商品並記錄證據；人工判斷留白，交主管拆分單品"
+            for col in HUMAN_COLS:
+                item[col] = ""
+        elif item.get("suggest brand name") == TYPE_NEW:
+            item["處理分類"] = "B 新品牌查證"
+            item["明確動作"] = "確認是品牌而非描述；查品牌庫，已有填 ID，確無則填新增:正式品牌名並附證據"
+            if not str(item.get("狀態", "")).startswith("③"):
+                item["狀態"], ord_val = ST_PENDING, 1
+        elif k.startswith("I:"):
+            item["處理分類"] = "C 單品／配件辨識"
+            item["明確動作"] = "查此商品的製造品牌；相容主機不是品牌，無法確認留白並記錄待確認"
+        elif item.get("suggest brand name") == TYPE_NB:
+            item["處理分類"] = "D 無品牌確認"
+            item["明確動作"] = "確認頁面無品牌後填 No brand 與原因；有品牌填 ID 或新增:名稱"
+        else:
+            item["處理分類"] = "E 既有品牌配對"
+            item["明確動作"] = "核對品牌實體後填 ID／候選序號；同實體重複 ID 才比較 adg"
         item["_ord"] = ord_val
         rows.append(item)
         
@@ -191,6 +222,7 @@ def import_bundle(cfg, in_path: Path | None = None, log=print) -> tuple[int, int
         systype = sysname if sysname in (TYPE_NB, TYPE_NEW) else TYPE_POOL
         sysid = None if blank(row.get("suggest brand id")) else int(float(row["suggest brand id"]))
         d.update({
+            "expected_log_id": int(float(row["規則版本"])) if not blank(row.get("規則版本")) else 0,
             "scope": "brand", "rule_key": str(row["key"]).strip(),
             "raw_brand": "" if blank(row.get("品牌欄")) else str(row["品牌欄"]),
             "sys_decision": systype, "sys_brand_id": sysid,
@@ -202,6 +234,12 @@ def import_bundle(cfg, in_path: Path | None = None, log=print) -> tuple[int, int
         })
         entries.append(d)
 
+    conflicts = df.get("跨類目衝突", pd.Series("否", index=df.index)).eq("是")
+    if (conflicts & df[H_PICK].fillna("").str.strip().ne("")).any():
+        errors.append("跨類目衝突列不可整組匯入，請清空判斷並由主管處理單品覆蓋")
+    if errors:
+        con.close()
+        raise ValueError("匯入驗證未通過，未寫入任何判斷：\n" + "\n".join(errors[:20]))
     n_imp, n_agree = store.record(con, entries, target.name, cfg.site, level1="ALL")
 
     for e in errors[:20]:

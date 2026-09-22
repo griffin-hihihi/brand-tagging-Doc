@@ -26,7 +26,7 @@ from .const import (CONF_COL, NB_ID, PATHS, R_COMPAT, R_DESC, R_EMPTY, R_OTHER, 
                     TYPE_NB, TYPE_NEW, TYPE_POOL)
 from .index import BrandIndex
 from .text import (ACCESSORY_RE, COMPAT_RE, NOBRAND_WORDS, blank, clean_raw, extract_bracket,
-                   looks_like_brand, normalize)
+                   host_brand, looks_like_brand, normalize)
 
 # 各葉節點的基礎信心。實際分數會再依證據強度與扣分調整。
 BASE = {
@@ -117,10 +117,14 @@ def resolve_candidates(strong, comp_full, bi: BrandIndex, cat: str = "", cat_che
 
     spans = {b: match_span(b) for b in tied}
     inside = {b: sp for b, sp in spans.items() if sp[0] != -1}
-    if len(inside) > 1:
+    # 出現位置不是母子品牌關係的證據。只對明確列出的品牌關係採用子品牌。
+    known_children = {("kanebo", "kate"), ("asus", "rog")}
+    confirmed_children = {child for parent in inside for child in inside if parent != child
+                          and (bi.parts[parent][1], bi.parts[child][1]) in known_children}
+    if confirmed_children:
         # 在電商命名慣例中，母品牌在前、子品牌在後（例：Kanebo KATE、Apple iPhone、ASUS ROG）
         # 出現位置較後（offset 較大）者為子品牌；若位置相同（巢狀包含），取較長者
-        pick = max(inside.keys(), key=lambda b: (inside[b][0], inside[b][1], bi.adg_of(b)))
+        pick = max(confirmed_children, key=lambda b: (inside[b][1], bi.adg_of(b)))
         rest = "、".join(bi.name[b] for b in inside if b != pick)
         return pick, "1.3", f"{rest} 也出現在品牌字串中，依子品牌優先取較具體的 {bi.name[pick]}", -5
 
@@ -167,6 +171,9 @@ def tag(raw_brand, title, cat, bi: BrandIndex, cat_check: bool) -> dict:
             return result(bi, "1.1", BASE["1.1"], "品牌欄明確寫明無品牌", reason=R_WORD)
         if COMPAT_RE.search(rb):
             return result(bi, "1.2", BASE["1.2"], "品牌欄為相容/副廠描述", reason=R_COMPAT)
+        if host_brand(rb) and (COMPAT_RE.search(t) or
+                              (normalize(rb).startswith("iphone") and ACCESSORY_RE.search(t))):
+            return result(bi, "1.2", 65, "主機品牌出現在相容配件，需確認實際製造商品牌", reason=R_COMPAT)
 
         hit, ranked = _best(bi.match(rb), bi, normalize(rb), cat, cat_check)
         if hit:
@@ -197,11 +204,15 @@ def tag(raw_brand, title, cat, bi: BrandIndex, cat_check: bool) -> dict:
             return result(bi, "2.1", BASE["2.1"], f"商品名稱【】標示為相容描述或無品牌（{bracket}）", reason=R_COMPAT)
 
         ok, why = looks_like_brand(bracket)
-        hit, ranked = _best(bi.match(bracket), bi, norm_br, cat, cat_check, scale=0.95,
+        # 描述字串不能靠其中一個詞命中品牌；精確的既有品牌仍可採認。
+        cands = bi.match(bracket)
+        if not ok:
+            cands = {b: v for b, v in cands.items() if v[4] in ("surface", "full") and v[0] >= 95}
+        hit, ranked = _best(cands, bi, norm_br, cat, cat_check, scale=0.95,
                             extra_note="（依商品名稱【】判斷）")
 
         # 檢驗【】是否為「相容主機名稱」：例如【Apple】iPhone 15 副廠鋼化膜，【】內填的是主機名但標題宣告為副廠/相容
-        is_compat_context = bool(COMPAT_RE.search(t))
+        is_compat_context = bool(COMPAT_RE.search(t) or ACCESSORY_RE.search(t))
         host_platforms = {"apple", "iphone", "ipad", "macbook", "airpods", "applewatch",
                           "samsung", "galaxy", "switch", "nintendo", "pixel",
                           "playstation", "ps4", "ps5", "xbox", "sony", "dyson",
@@ -212,12 +223,12 @@ def tag(raw_brand, title, cat, bi: BrandIndex, cat_check: bool) -> dict:
             bid, path, conf, note, ranked = hit
             # 若【】是主機平台且標題明確標示副廠/相容，則該主機品牌僅為相容對象，非商品製造商
             if is_compat_context and is_host_brand:
-                return result(bi, "2.1", BASE["2.1"], f"商品為相容配件，【】中之品牌（{bracket}）為相容主機而非製造商", ranked, reason=R_COMPAT)
+                return result(bi, "2.1", 65, f"商品為配件，【】中之品牌（{bracket}）可能是相容主機，需確認製造商", ranked, reason=R_COMPAT)
             return result(bi, "2.2", conf, note, ranked, bid=bid)
 
         if ok:
             if is_compat_context and is_host_brand:
-                return result(bi, "2.1", BASE["2.1"], f"商品為相容配件，【】中之描述（{bracket}）為相容主機而非製造商", ranked, reason=R_COMPAT)
+                return result(bi, "2.1", 65, f"商品為配件，【】中之描述（{bracket}）可能是相容主機，需確認製造商", ranked, reason=R_COMPAT)
             return result(bi, "2.3", BASE["2.3"], "商品名稱【】看起來是品牌，但品牌庫查無", ranked,
                           new_name=bracket)
         # 【】不是品牌（純規格或促銷描述，如【台灣製造防窺片】） → 往下檢查是否為相容配件或掃描內文

@@ -132,14 +132,14 @@ class ShortBrandConflictTests(unittest.TestCase):
         self.assertEqual(r["suggest brand id"], "2")
         self.assertEqual(r["suggest brand name"], "KATE 凱婷")
 
-    def test_subbrand_priority_apple_iphone(self):
+    def test_iphone_product_line_maps_to_apple(self):
         p = pool((1, "Apple", "Mobile & Gadgets", 1000000), (2, "iphone", "Mobile & Gadgets", 500000))
         bi = BrandIndex(p, [], "level1_category", TH)
 
         r = tag("Apple iPhone 15 Pro Max 256G", "", "Mobile & Gadgets", bi, True)
 
-        self.assertEqual(r["suggest brand id"], "2")
-        self.assertEqual(r["suggest brand name"], "iphone")
+        self.assertEqual(r["suggest brand id"], "1")
+        self.assertEqual(r["suggest brand name"], "Apple")
 
     def test_subbrand_fallback_to_parent_when_subbrand_not_in_pool(self):
         p = pool((1, "Apple", "Mobile & Gadgets", 1000000))
@@ -177,4 +177,3 @@ class ShortBrandConflictTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

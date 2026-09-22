@@ -17,7 +17,7 @@ from .const import CONF_COL, REVIEW_TH, TYPE_NEW
 from .text import CJK_RE, split_parts
 
 ACT_PAIR = "A 可能是品牌庫既有品牌的中文名 → 請配對"
-ACT_ADD = "B 品牌庫確實沒有 → 決定是否收錄"
+ACT_ADD = "B 尚未找到品牌 → 查證是否為品牌及是否已收錄"
 ACT_CHECK = "C 有相似候選 → 請確認是否同一品牌"
 
 COLS = ["排名", "品牌字串", "總商品數", "累積覆蓋", "出現在幾個L1", "L1清單", "語言", "建議動作",
@@ -38,7 +38,8 @@ def build(con, site: str) -> pd.DataFrame:
     d = pd.read_sql(
         "SELECT level1, raw_brand, title, 新增品牌名稱, `suggest brand name` AS sugg, "
         "`shp brand name1` AS cand1, `信心指數` AS conf, 判斷路徑 "
-        "FROM item_results WHERE site=? AND CAST(`信心指數` AS REAL) < ?", con, params=(site, REVIEW_TH))
+        "FROM item_results WHERE site=? AND (CAST(`信心指數` AS REAL) < ? OR `suggest brand name`=?)",
+        con, params=(site, REVIEW_TH, TYPE_NEW))
     if d.empty:
         return pd.DataFrame(columns=COLS)
 

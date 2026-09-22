@@ -32,7 +32,7 @@ REVIEW_COLS = ["key", "狀態", "抽查", "歧義", "累積覆蓋", "群組", "�
                "shp brand name1", "shp brand name2", "shp brand name3"] \
     + HUMAN_COLS \
     + ["判斷路徑", "判斷說明", "商品名稱【】", "主要類目",
-       "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核"]
+       "suggest brand id", "新增品牌名稱", "No brand原因", "上次審核", "規則版本"]
 FREEZE_AT = REVIEW_COLS.index(H_NOTE) + 1          # 凍結到【人工】備註，往右捲動時決策資訊不會消失
 
 ITEM_COLS = ["品號", "品牌欄", "商品名稱", "目前結果", "目前brand id"] + HUMAN_COLS + ["上次審核"]
@@ -131,6 +131,7 @@ def collect_decisions(path, bi, site) -> tuple[list, list]:
             systype = sysname if sysname in (TYPE_NB, TYPE_NEW) else TYPE_POOL
             sysid = None if blank(row.get("suggest brand id")) else int(float(row["suggest brand id"]))
             d.update({
+                "expected_log_id": int(float(row["規則版本"])) if not blank(row.get("規則版本")) else 0,
                 "scope": "brand", "rule_key": str(row["key"]).strip(),
                 "raw_brand": "" if blank(row.get("品牌欄")) else str(row["品牌欄"]),
                 "sys_decision": systype, "sys_brand_id": sysid,
@@ -186,6 +187,7 @@ def build_review(kinfo, kres, rules, sample_n, rng_seed=42) -> pd.DataFrame:
     rv[H_REASON] = [p[1] for p in pre]
     rv[H_NOTE] = [p[2] for p in pre]
     rv["上次審核"] = decided.map(lambda r: "" if r is None else f"{r['updated_at']}　{r['actor']}")
+    rv["規則版本"] = decided.map(lambda r: 0 if r is None else r["log_id"])
 
     # 抽查★：高/中信心、系統自動判的，依商品數加權抽樣（開根號避免大品牌壟斷樣本）
     is_rule = decided.notna()

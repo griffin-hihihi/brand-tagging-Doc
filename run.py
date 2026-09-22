@@ -140,7 +140,7 @@ def cmd_export(cfg, args):
             END AS "TAGGING品牌",
             r.[信心指數] AS "信心度",
             CASE 
-                WHEN CAST(r.[信心指數] AS INTEGER) < 75 THEN '是'
+                WHEN CAST(r.[信心指數] AS INTEGER) < 75 OR r.[suggest brand name] = '建議品牌庫新增品牌' THEN '是'
                 ELSE '否'
             END AS "是否需要人工",
             r.[判斷路徑] AS "路徑"
