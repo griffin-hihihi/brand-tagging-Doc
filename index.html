@@ -573,6 +573,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-22 修正與操作補充
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -885,6 +896,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2026-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-22 修正與操作補充
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -904,7 +926,7 @@
 
 <h1 id="_1">競網品牌對應作業說明書：決策體系、判定規則與輸出標準</h1>
 <blockquote>
-<p><strong>版本</strong>：v1.5　｜　<strong>適用範圍</strong>：momo 全站商品（545,572 品號）　｜　<strong>最後更新</strong>：2026/09/21</p>
+<p><strong>版本</strong>：v1.6　｜　<strong>適用範圍</strong>：momo 全站商品（545,572 品號）　｜　<strong>最後更新</strong>：2026/09/22</p>
 </blockquote>
 <hr />
 <h2 id="1">1. 專案目標與核心原則</h2>
@@ -914,15 +936,12 @@
 <h3 id="12">1.2 原則</h3>
 <p>為確保跨品類、跨批次之資料標準完全一致，系統全流程嚴格貫徹以下三原則：</p>
 <ol>
-<li><strong>最具體子品牌優先</strong></li>
-<li>不論 3C 科技、美妝或居家生活，全品類標準保持一致：<strong>當母品牌與子品牌同時存在於品牌庫時，優先歸入最具體的子品牌</strong>。<ul>
-<li>例：<code>Apple iPhone 15</code> ➔ 同時包含 Apple 與 iPhone ➔ <strong>歸入 <code>iphone</code></strong>。</li>
-<li>例：<code>ASUS ROG 電競主機板</code> ➔ 同時包含 ASUS 與 ROG ➔ <strong>歸入 <code>ROG</code></strong>。</li>
-<li>例：<code>Kanebo KATE 凱婷 眉筆</code> ➔ 同時包含 Kanebo 與 KATE ➔ <strong>歸入 <code>KATE 凱婷</code></strong>。</li>
-</ul>
-</li>
+<li><strong>先確認品牌實體，產品線不當作獨立品牌</strong></li>
+<li>iPhone 是 Apple 產品線，必須對應帶有 Apple 的正確品牌實體；同實體 ID 再依 adg 選最高。</li>
+<li>本次品牌庫為 <code>Apple [1189223]</code>（adg 36,232,902）優先於 <code>iPhone Apple [3886708]</code>（551,234）。Apple House、蘋果西打等不同品牌不參與比較。</li>
+<li>只有明確列出的母子品牌關係（Kanebo / KATE、ASUS / ROG）可使用子品牌優先；不同品牌不因出現位置較後就自動勝出。</li>
 <li>
-<p>若子品牌尚未收錄於品牌庫，則依現有資料邊界歸入母品牌（例：<code>Apple iPad Air</code> ➔ 庫內無 iPad 品牌 ➔ <strong>歸入 <code>Apple</code></strong>），不自行憑空建立未經核准之代碼。</p>
+<p>iPhone 保護殼等配件須確認實際製造商，不能只因相容 iPhone 就歸入 Apple。</p>
 </li>
 <li>
 <p><strong>品類邊界隔離（杜絕跨類誤判）</strong></p>
@@ -992,7 +1011,7 @@
 <td style="text-align: left;">品牌庫完全相符（含子品牌優先）</td>
 <td style="text-align: center;"><span class="badge badge-pool">TYPE_POOL</span></td>
 <td style="text-align: center;">96</td>
-<td style="text-align: left;">「BURBERRY」完全相符；「Apple iPhone」取子品牌 <code>iphone</code></td>
+<td style="text-align: left;">「BURBERRY」完全相符；「Apple iPhone」對應 Apple 同實體最高 adg ID</td>
 </tr>
 <tr>
 <td style="text-align: center;"><strong>1.4</strong></td>
@@ -1703,8 +1722,8 @@
 <hr />
 <h3 id="62">6.2 關鍵演算法與可靠性機制</h3>
 <ul>
-<li><strong>子品牌位移跨度分析 (Span Offset Analysis)</strong>：
-  電商命名慣例普遍為 <code>[母品牌] [子品牌]</code>（如 <code>Apple iPhone</code>、<code>ASUS ROG</code>）。系統在命中多個候選時，比對各候選在原始字串中的起始位移（Offset），優先選取位置靠後之子品牌，確保精準落地至具體顆粒度。</li>
+<li><strong>產品線正規化與已確認子品牌關係</strong>：
+  iPhone 對應 Apple；只有明確列出的母子品牌關係可自動採用子品牌，其餘多品牌歧義維持低信心待審。</li>
 <li><strong>跨品類部分命中懲罰</strong>：
   當候選品牌所屬品類與商品所屬品類不同，且僅為分詞局部命中時，系統自動施加懲罰權重並直接否決，徹底防範如書籍漫畫誤對應五金汽配之情形。</li>
 <li><strong>拼寫容錯與嚴格門檻</strong>：
@@ -1724,9 +1743,9 @@
 <blockquote>
 <p><strong>說明</strong>：不會。系統以商品所屬之一級品類作為隔離邊界。比對時，若候選品牌在該品類無關聯，且非 100% 完全相符時，系統會啟動「跨品類懲罰」直接否決比對，杜絕跨領域誤判。</p>
 </blockquote>
-<p><strong>Q3：母品牌與子品牌（如 Apple 與 iPhone、ASUS 與 ROG）同時出現時，判斷準則為何？</strong></p>
+<p><strong>Q3：Apple 與 iPhone 同時出現如何判斷？</strong></p>
 <blockquote>
-<p><strong>說明</strong>：系統貫徹「最具體子品牌優先」原則。演算法會透過位移跨度分析確認兩者從屬關係，優先指派子品牌 ID（如 <code>iphone</code>、<code>ROG</code>），使銷售與庫存分析具備更細緻之顆粒度；若該子品牌尚未收錄於品牌庫，則依現有資料邊界歸入母品牌。</p>
+<p>iPhone 是商品／產品線名稱，對應 Apple 同實體登錄中 adg 最高的 ID。此規則不把第三方配件歸入 Apple，也不把名稱帶 Apple 的其他公司視為同一品牌。</p>
 </blockquote>
 <p><strong>Q4：現有品牌庫尚未收錄的新興品牌，系統會如何處理？會不會造成資料污染？</strong></p>
 <blockquote>
@@ -1744,6 +1763,15 @@
 <blockquote>
 <p><strong>說明</strong>：低信心度項目主要集中在「全新未知品牌」、「多個品牌同分歧義（如單純填寫國家名）」以及「極短英文字母縮寫（如 GB、HH）」。系統針對此類項目採保守策略，強制標記為待審並集中於審核總表最上方，確保所有低信心度資料均有專人確認後方才定案。</p>
 </blockquote>
+<h2 id="2026-09-22">2026-09-22 修正與操作補充</h2>
+<ul>
+<li>品牌欄有值仍優先使用品牌欄；空白時取第一個非空 <code>【】</code> 或 <code>[]</code>，排除已辨識的促銷、規格與描述，再按條件掃描完整商品名稱（原本限前 80 字）。</li>
+<li>配件／相容描述可能提前結束搜尋；No brand 是系統暫判，不能解讀為已查證沒有品牌。</li>
+<li>新增建議均需人工查證；啟發式文字規則不能證明是註冊商標，也不能保證找完所有別名。</li>
+<li>全站總表新增處理分類、明確動作、套用範圍、跨類目衝突與各類目建議；衝突禁止直接整組回灌。</li>
+<li>匯入驗證錯誤會中止並保留原檔；帶規則版本的舊判斷不能覆蓋較新的人工結論。</li>
+<li>歷史統計表與例子為 2026-09-21 快照；最新數量以本次重跑輸出為準。Temp 分工與驗收見 <code>docs/temp_handoff.md</code>。</li>
+</ul>
 
 
 
