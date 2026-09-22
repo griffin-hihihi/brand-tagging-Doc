@@ -117,15 +117,50 @@ def cmd_history(cfg, args):
 
 def cmd_export(cfg, args):
     con = store.open_db(cfg.db_path)
-    q = "SELECT * FROM item_results WHERE site=?"
+    # 檢查快取資料庫是否可用以補齊品類與叢集階層
+    has_cache = cfg.cache_path.exists()
+    if has_cache:
+        con.execute(f"ATTACH DATABASE '{cfg.cache_path}' AS goods_cache")
+        q = """
+        SELECT 
+            g.item_id AS "品號",
+            g.cluster AS "Cluster",
+            g.l1 AS "L1",
+            g.l2 AS "L2",
+            g.l3 AS "L3",
+            g.brand AS "品牌",
+            g.title AS "商品名稱",
+            r.[shp brand name1] AS "候選品牌1",
+            r.[shp brand name2] AS "候選品牌2",
+            r.[shp brand name3] AS "候選品牌3",
+            CASE 
+                WHEN r.[suggest brand name] = '建議品牌庫新增品牌' AND r.[新增品牌名稱] != '' 
+                    THEN r.[新增品牌名稱]
+                ELSE r.[suggest brand name]
+            END AS "TAGGING品牌",
+            r.[信心指數] AS "信心度",
+            CASE 
+                WHEN CAST(r.[信心指數] AS INTEGER) < 75 THEN '是'
+                ELSE '否'
+            END AS "是否需要人工",
+            r.[判斷路徑] AS "路徑"
+        FROM item_results r
+        JOIN goods_cache.goods g ON r.item_id = g.item_id
+        WHERE r.site=?
+        """
+    else:
+        q = "SELECT * FROM item_results WHERE site=?"
+
     p = [cfg.site]
     if args.l1:
-        q += " AND level1 IN (" + ",".join("?" * len(args.l1)) + ")"
+        q += " AND r.level1 IN (" + ",".join("?" * len(args.l1)) + ")" if has_cache else " AND level1 IN (" + ",".join("?" * len(args.l1)) + ")"
         p += list(args.l1)
+
     df = pd.read_sql(q, con, params=p)
     if df.empty:
         sys.exit("✖ item_results 沒有資料，請先跑 tag")
-    out = Path(args.out) if args.out else cfg.site_output_dir / f"{cfg.site}_export.csv"
+    default_name = f"{cfg.site}_全站品牌標記結果_GoogleSheet用.csv"
+    out = Path(args.out) if args.out else cfg.site_output_dir / default_name
     out.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out, index=False, encoding="utf-8-sig")
     print(f"✔ {len(df):,} 筆 → {out}")
